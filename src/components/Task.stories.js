@@ -29,7 +29,7 @@ export default {
   args: {
     id: '1',
     title: 'titolo',
-    state: 'Pinnato',
+    state: 'TASK_ARCHIVED',
     backgroundColor: 'yellow'
   },
 };
