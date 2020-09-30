@@ -56,3 +56,8 @@
     },
   };
 </script>
+<style scoped>
+.list-item {
+  background-color: greenyellow;
+}
+</style>
