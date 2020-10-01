@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions'
-import { withKnobs, object } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import StatusEnabler from './StatusEnabler'
 export default {
   title: 'StatusEnabler',
@@ -22,10 +22,11 @@ export const Default = () => ({
   components: { StatusEnabler }, 
   template: statusTemplate,
   props: {
-    statusEnabler: {
-      default: () => object('statusEnabler', {
-        statusEnablerData
-      })
+    enabled: {
+      default: () => boolean('enabled', false)
+    },
+    name: {
+      default: () => text('name', "name")
     },
   },
   methods: actionsData,
@@ -35,11 +36,11 @@ export const Enabled = () => ({
   components: { StatusEnabler },
   template: statusTemplate,
   props: {
-    statusEnabler: {
-      default: () => object('statusEnabler', {
-        ...statusEnablerData,
-        value: true,
-      })
+    enabled: {
+      default: () => boolean('enabled', true)
     },
-  }
+    name: {
+      default: () => text('name', "enabled")
+    },
+  },
 })
