@@ -11,6 +11,32 @@ export default new Vuex.Store({
       { id: '3', title: 'Something else', state: 'TASK_INBOX' },
       { id: '4', title: 'Something again', state: 'TASK_INBOX' },
     ],
+    attributes: [
+      {
+        attribute: 'AttributeOne',
+        value: 'ValueOne',
+        keyEnabled: false,
+        required: false, 
+      },
+      {
+        attribute: 'AttributeTwo',
+        value: 'ValueTwo',
+        keyEnabled: true,
+        required: false,
+      },
+      {
+        attribute: 'AttributeThree',
+        value: 'ValueThree',
+        keyEnabled: false,
+        required: true,
+      },
+      {
+        attribute: 'AttributeFour',
+        value: 'ValueFour',
+        keyEnabled: true,
+        required: true,
+      },
+    ]
   },
   mutations: {
     ARCHIVE_TASK(state, id) {
