@@ -36,7 +36,108 @@ export default new Vuex.Store({
         keyEnabled: true,
         required: true,
       },
-    ]
+    ],
+    
+    superSections: {
+      superSection1: {
+        sections: [
+          section1 = {
+            family1: {
+              attributes: [
+               {
+                 attribute: 'AttributeOne',
+                 value: 'ValueOne',
+                 keyEnabled: false,
+                 required: false, 
+               },
+               {
+                 attribute: 'AttributeTwo',
+                 value: 'ValueTwo',
+                 keyEnabled: true,
+                 required: false,
+               },
+               {
+                 attribute: 'AttributeThree',
+                 value: 'ValueThree',
+                 keyEnabled: false,
+                 required: true,
+               },
+               {
+                 attribute: 'AttributeFour',
+                 value: 'ValueFour',
+                 keyEnabled: true,
+                 required: true,
+               },
+              ],
+              product: "Array of products"
+            }, 
+            family2: {
+              attributes: [
+               {
+                 attribute: 'AttributeOne',
+                 value: 'ValueOne',
+                 keyEnabled: false,
+                 required: false, 
+               },
+               {
+                 attribute: 'AttributeTwo',
+                 value: 'ValueTwo',
+                 keyEnabled: true,
+                 required: false,
+               },
+               {
+                 attribute: 'AttributeThree',
+                 value: 'ValueThree',
+                 keyEnabled: false,
+                 required: true,
+               },
+               {
+                 attribute: 'AttributeFour',
+                 value: 'ValueFour',
+                 keyEnabled: true,
+                 required: true,
+               },
+              ],
+              product: "Array of products"
+            },
+          },
+          section2 = {
+            family1: {
+              attributes: "attributes",
+              product: "Array of products"
+            }, 
+            family2: {
+              attributes: "attributes",
+              product: "Array of products"
+            },
+          }
+        ],
+      },
+      supersection2: {
+        sections: [
+          section1 = {
+            family1: {
+              attributes: "attributes",
+              product: "Array of products"
+            }, 
+            family2: {
+              attributes: "attributes",
+              product: "Array of products"
+            },
+          },
+          section2 = {
+            family1: {
+              attributes: "attributes",
+              product: "Array of products"
+            }, 
+            family2: {
+              attributes: "attributes",
+              product: "Array of products"
+            },
+          }
+        ],
+      },
+    }
   },
   mutations: {
     ARCHIVE_TASK(state, id) {

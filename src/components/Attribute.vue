@@ -3,12 +3,10 @@
         <td>{{this.attribute}}</td>
         <td>{{this.value}}</td>
         <td> 
-          <h4 v-if="this.keyEnabled"> Y </h4>
-          <h4 v-else> N </h4>
+          <statusEnabler  :enabled="this.keyEnabled" name="Key" /> 
         </td>
-        <td> 
-          <h4 v-if="this.required"> Y </h4>
-          <h4 v-else> N </h4>
+        <td>
+          <statusEnabler  :enabled="this.required" name="Required" />
         </td>
         <range :min="0" :max="12" :enabled="true" />
       </tr>
@@ -16,9 +14,11 @@
 
 <script>
 import Range from './Range'
+import StatusEnabler from './StatusEnabler'
 export default {
   components: {
     Range,
+    StatusEnabler,
   },
   props: {
     attribute: {

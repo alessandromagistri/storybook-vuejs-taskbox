@@ -1,7 +1,11 @@
 <template>
   <div style="border: solid white 3px; width: fit-content; padding: 10px;">
     SuperSection
-    <sectionComponent /> 
+    <select @change="callbackListener">
+      <option v-for="superSection in superSections" 
+      :key='superSection.id' 
+      :value="superSection.id" >{{superSection.name}}</option> 
+    </select> 
   </div>
 </template>
 
@@ -12,14 +16,22 @@ export default {
   components: {
     SectionComponent,
   },
-  // props: {
-  //   section: {
-  //     type: String,
-  //     required: true,
-  //     default: "MySection"
-  //   },
-  // },
-
+  methods:  {
+    debug (evt)  {
+      console.log(evt)
+    },
+  },
+  props: {
+    superSections: {
+      type: Array,
+      required: true,
+      default: []
+    },
+    callbackListener: {
+      required: true,
+      type: Function,
+    },
+  },
 }
 </script>
 

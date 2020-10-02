@@ -1,7 +1,7 @@
 <template>
   <div style="border: solid white 2px; width: fit-content; padding: 10px;">
     Section
-    <family /> 
+    <family :family="section.family1" /> 
   </div>
 </template>
 
@@ -12,13 +12,13 @@ export default {
   components: {
     Family,
   },
-  // props: {
-  //   section: {
-  //     type: String,
-  //     required: true,
-  //     default: "MySection"
-  //   },
-  // },
+  props: {
+    section: {
+      type: Object,
+      required: true,
+      default: "MySection"
+    },
+  },
 
 }
 </script>
