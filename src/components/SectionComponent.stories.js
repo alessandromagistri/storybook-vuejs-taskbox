@@ -1,5 +1,6 @@
 import SectionComponent from './SectionComponent'
-import { withKnobs, object } from '@storybook/addon-knobs';
+import Family from './Family'
+import { withKnobs, array } from '@storybook/addon-knobs';
 
 export default {
   title: 'SectionComponent',
@@ -8,80 +9,101 @@ export default {
 }
 
 export const actionsData = {
-}
-
-export const sectionComponentData =  {
-  family1: {
-    attributes: [
-      {
-        attribute: 'AttributeOne',
-        value: 'ValueOne',
-        keyEnabled: false,
-        required: false, 
-      },
-      {
-        attribute: 'AttributeTwo',
-        value: 'ValueTwo',
-        keyEnabled: true,
-        required: false,
-      },
-      {
-        attribute: 'AttributeThree',
-        value: 'ValueThree',
-        keyEnabled: false,
-        required: true,
-      },
-      {
-        attribute: 'AttributeFour',
-        value: 'ValueFour',
-        keyEnabled: true,
-        required: true,
-      },
-    ],
-    name: "family1",
-    product: "Array of products"
-  }, 
-  family2: {
-    attributes: [
-      {
-        attribute: 'AttributeOne',
-        value: 'ValueOne',
-        keyEnabled: false,
-        required: false, 
-      },
-      {
-        attribute: 'AttributeTwo',
-        value: 'ValueTwo',
-        keyEnabled: true,
-        required: false,
-      },
-      {
-        attribute: 'AttributeThree',
-        value: 'ValueThree',
-        keyEnabled: false,
-        required: true,
-      },
-      {
-        attribute: 'AttributeFour',
-        value: 'ValueFour',
-        keyEnabled: true,
-        required: true,
-      },
-    ],
-    name: "family2",
-    product: "Array of products"
+  sectionCallbackListener(evt) {
+    if (!this.selectedSections.includes(evt.target.value)) {
+      this.selectedSections.push(evt.target.value)
+    }
+    console.log(this.selectedSections)
+  },
+  
+  familyCallbackListener(evt) {
+    if (!this.selectedFamilies.includes(evt.target.value)) {
+      this.selectedFamilies.push(evt.target.value)
+    }
+    console.log(this.selectedFamilies)
   },
 }
 
-const sectionComponentTemplate = '<sectionComponent :section="section" />'
+export const sections = [
+  {
+    id: 2,
+    name: "Supersection A Section A",
+    families: [
+      {
+        id: 2,
+        name: "Supersection A Section A Family A",
+      },
+      {
+        id: 3,
+        name: "Supersection A Section A Family B",
+      },
+      {
+        id: 4,
+        name: "Supersection A Section A Family C",
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "Supersection A Section B",
+    families: [
+      {
+        id: 5,
+        name: "Supersection A Section B Family A",
+      },
+      {
+        id: 6,
+        name: "Supersection A Section B Family B",
+      },
+      {
+        id: 7,
+        name: "Supersection A Section B Family C",
+      },
+    ],
+  }
+]
+
+const sectionComponentTemplate = 
+  `<div> 
+    <sectionComponent 
+      :sections="sections" 
+      :sectionCallbackListener="sectionCallbackListener" 
+    /> 
+    <family 
+      v-if="selectedSections.length !== 0" 
+      :families="availableFamilies" 
+      :familyCallbackListener = "familyCallbackListener"
+    /> 
+  </div>`
+
 
 export const Default = () => ({
-  components: { SectionComponent }, 
+  components: { SectionComponent, Family }, 
   template: sectionComponentTemplate,
+  data: () => {
+    return {
+      selectedSections: [],
+      selectedFamilies: [],
+    }
+  },
   props: {
-    section: {
-      default: object('section', {...sectionComponentData}),
+    sections: {
+      default: array('sections', sections),
     },
+  },
+  computed:{
+    availableFamilies: function() {
+      const families = sections.reduce((result, section) => {
+        for (let index = 0; index < this.selectedSections.length; index ++) {
+          if (this.selectedSections[index] == section.name) {
+            result.push(section.families)
+          }
+        }
+        return result
+      }, [] )
+      console.log("families: ", families.flat())
+      return families.flat()
+    }
   },
   methods: actionsData,
 })

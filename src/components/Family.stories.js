@@ -1,5 +1,5 @@
 import Family from './Family'
-import { withKnobs, object } from '@storybook/addon-knobs';
+import { withKnobs, array } from '@storybook/addon-knobs';
 
 export default {
   title: 'Family',
@@ -8,61 +8,39 @@ export default {
 }
 
 export const actionsData = {
+  familyCallbackListener(evt) {
+    console.log(evt)
+  }
 }
 
-export const familyData =  {
-  attributes: [
+export const families = [
   {
-    attribute: 'AttributeOne',
-    value: 'ValueOne',
-    keyEnabled: false,
-    required: false, 
+    id: 2,
+    name: "Supersection A Section A Family A",
   },
   {
-    attribute: 'AttributeTwo',
-    value: 'ValueTwo',
-    keyEnabled: true,
-    required: false,
+    id: 3,
+    name: "Supersection A Section A Family B",
   },
   {
-    attribute: 'AttributeThree',
-    value: 'ValueThree',
-    keyEnabled: false,
-    required: true,
+    id: 4,
+    name: "Supersection A Section A Family C",
   },
-  {
-    attribute: 'AttributeFour',
-    value: 'ValueFour',
-    keyEnabled: true,
-    required: true,
-  },
-  ],
-  name: 'FamilyName',
-  products: 'Those are your products',
-}
+]
 
-
-const familyTemplate = '<family :family="family" />'
-// const familyTemplate = '<family :name="name" :products="products" />'
-
+const familyTemplate = 
+  `<family 
+    :families="families"  
+    :familyCallbackListener="familyCallbackListener"
+  />`
 
 export const Default = () => ({
   components: { Family }, 
   template: familyTemplate,
   props: {
-    family: {
-      default: () => object('family', {...familyData})
+    families: {
+      default: () => array('families', families)
     }
-    // attributes: {
-    //   default: () => array('attributes',  [...familyData.attributes] )
-    //   ,
-    // },
-    // name: {
-    //   default: text('name', familyData.name),
-    // },
-    // products: {
-    //   default: text('products', familyData.products),
-    // },
   },
   methods: actionsData,
 })

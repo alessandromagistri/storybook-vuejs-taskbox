@@ -1,9 +1,13 @@
 <template>
   <div style="border: solid white 1px; width: fit-content; padding:10px;">
-    Family: {{family.name}}
-    <attributes :attributes="family.attributes" />
-
-    {{family.products}}
+    I'M IN FAMILY
+    <select @change="familyCallbackListener">
+      <option v-for="family in families" 
+      :key='family.id' 
+      :value="family.name" >{{family.name}}</option> 
+    </select> 
+    <!-- Family: {{family.name}} -->
+    <!-- <attributes :attributes="family.attributes" /> -->
   </div>
 </template>
 
@@ -15,12 +19,15 @@ export default {
   components: {
     Attributes
   },
-
   props: {  
-    family: {
-      type: Object,
+    families: {
+      type: Array,
       required: true,
       default: {},
+    },
+    familyCallbackListener: {
+      required: true,
+      type: Function,
     },
   },
 }
