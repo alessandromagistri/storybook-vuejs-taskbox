@@ -1,5 +1,5 @@
 import Family from './Family'
-import { withKnobs, array } from '@storybook/addon-knobs';
+import { withKnobs, } from '@storybook/addon-knobs';
 
 export default {
   title: 'Family',
@@ -7,40 +7,46 @@ export default {
   excludeStories: /.*Data$/,
 }
 
-export const actionsData = {
-  familyCallbackListener(evt) {
-    console.log(evt)
-  }
-}
-
 export const families = [
   {
     id: 2,
-    name: "Supersection A Section A Family A",
+    name: 'Supersection A Section A Family A',
+            attributes: [
+              {
+                id: '111',
+                familyId: '2',
+                name: 'Attribute A of family A',
+              },
+              {
+                id: '112',
+                familyId: '2',
+                name: 'Attribute B of family A',
+              },
+              {
+                id: '113',
+                familyId: '2',
+                name: 'Attribute C of family A',
+              },
+            ]
   },
   {
     id: 3,
-    name: "Supersection A Section A Family B",
+    name: 'Supersection A Section A Family B',
   },
   {
     id: 4,
-    name: "Supersection A Section A Family C",
+    name: 'Supersection A Section A Family C',
   },
 ]
 
-const familyTemplate = 
-  `<family 
-    :families="families"  
-    :familyCallbackListener="familyCallbackListener"
-  />`
+const familyTemplate = `<family  />`
 
 export const Default = () => ({
   components: { Family }, 
   template: familyTemplate,
-  props: {
-    families: {
-      default: () => array('families', families)
+  data: () => {
+    return {
+      selectedFamilies: [],
     }
   },
-  methods: actionsData,
 })

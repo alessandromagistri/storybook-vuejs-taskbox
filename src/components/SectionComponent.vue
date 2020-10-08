@@ -2,55 +2,63 @@
   <div style="border: solid white 2px; width: fit-content; padding: 10px;">
     Select your sections
     <select @change="sectionCallbackListener">
-      <option v-for="section in sections" 
-      :key='section.id' 
-      :value="section.name" >{{section.name}}</option> 
+      <option 
+        v-for="section in availableSections" 
+        :key='section.id' 
+        :value="section.name" 
+      > 
+      {{section.name}}
+      </option> 
     </select> 
 
+    <selectedValues
+      v-if="selectedSections.length != 0"
+      name="Sections"
+      :values="selectedSections"
+      storeKey="selectedSections"
+    />
+    
     <family 
       v-if="selectedSections.length != 0"
-      :families="availableFamilies"
     /> 
+
   </div>
 </template>
 
 <script>
 import Family from './Family'
-
+import SelectedValues from './SelectedValues'
 export default {
   title: "section",
   components: {
-    Family
+    Family,
+    SelectedValues,
   },
-  data: () => {
-    return {
-      selectedSections: [],
-    }
-  },
-  props: {
-    sections: {
-      type: Array,
-      required: true,
-      default: [],
-    },
-    sectionCallbackListener: {
-      required: true,
-      type: Function,
-    },
-  },
-  computed:{ 
-    availableFamilies: function() {
-      const families = sections.reduce((result, section) => {
-        if(this.selectedSections == section.name) {
-          result.push(section.families)
+  computed: { 
+
+    availableSections() {
+      const sections = this.$store.state.superSections.reduce((result, superSection) => {
+        if (superSection.id == this.$store.state.currentSelectedSuperSection) {
+          result = superSection.sections
         }
+
         return result
-      }, [] )
-      console.log({families})
-      console.log("CONCATED: ",[].concat.apply([], families))
-       return [].concat.apply([], families)
+      }, [])
+      console.log(sections)
+      this.$store.commit('assignAvailableSections', sections)
+      return sections
+    },
+
+    selectedSections() {
+      return this.$store.state.selectedSections
     },
   },
+  
+  methods: {
+    sectionCallbackListener(evt) {
+      this.$store.commit('sectionCallbackListener', evt.target.value)
+    },
+  }
 
 }
 </script>

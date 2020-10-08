@@ -12,7 +12,7 @@ export const actionsData = {
   matchAttributes: action('matchAttributes')
 }
 
-export const attributesData =  [
+export const attributes =  [
     {
       attribute: 'AttributeOne',
       value: 'ValueOne',
@@ -47,7 +47,7 @@ export const Default = () => ({
   template: attributesTemplate,
   props: {
     attributes: {
-      default: array('attributes', attributesData),
+      default: array('attributes', attributes),
     },
   },
   methods: actionsData,

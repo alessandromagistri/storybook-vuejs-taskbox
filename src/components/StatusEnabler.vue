@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h4 v-if="this.enabled"> Y </h4>
-    <h4 v-else> N </h4>
+    <div v-if="this.enabled"> Y </div>
+    <div v-else> N </div>
   </div>
 </template>
 

@@ -3,16 +3,14 @@
     <table> 
       <tr>
         <th>Attribute</th>
-        <th>Value</th>
-        <th>Key</th>
-        <th>Required</th>
+        <th>FamilyId</th>
+        <th>Id</th>
         <th colspan="3">Range (Min - Max)</th>
       </tr>
     <attribute 
-        :attribute="attribute.attribute"
-        :value="attribute.value"
-        :keyEnabled="attribute.keyEnabled"
-        :required="attribute.required"
+        :attribute="attribute.name"
+        :familyId="attribute.familyId"
+        :id="attribute.id"
         v-for="(attribute, index) in attributes" 
         :key='index' 
         />
@@ -30,7 +28,7 @@ export default {
     attributes: {
       type: Array,
       required: true,
-      default: [],
+      default: () => [],
     }
   }
 
@@ -38,5 +36,10 @@ export default {
 </script>
 
 <style>
+th, td{
+  border: solid black 1px;
+  padding: 5px;
+  text-align: center;
+}
 
 </style>

@@ -1,7 +1,6 @@
 import SuperSection from './SuperSection'
-import SectionComponent from './SectionComponent'
-// import Family from './Family'
-import { withKnobs, array } from '@storybook/addon-knobs'
+import store from '../store'
+import { withKnobs } from '@storybook/addon-knobs'
 
 export default {
   title: 'SuperSection',
@@ -10,116 +9,238 @@ export default {
 }
 
 export const actionsData = {
-  callbackListener(evt) {
-    this.currentSelectedSuperSection = evt.target.value
-    this.selectedSections = []
+  familyCallbackListener(evt) {
+    if (!this.selectedFamilies.includes(evt.target.value)) {
+      this.selectedFamilies.push(evt.target.value)
+    }
+    console.log(this.selectedFamilies)
   },
-  sectionCallbackListener(evt) {
-    if (!this.selectedSections.includes(evt.target.value))
-      this.selectedSections.push(evt.target.value)
-    console.log(this.selectedSections)
-  },
-  // familyCallbackListener(evt) {
-  //   if (!this.selectedFamilies.includes(evt.target.value)) {
-  //     this.selectedFamilies.push(evt.target.value)
-  //   }
-  //   console.log(this.selectedFamilies)
-  // },
 }
 
 export const superSections = [
   {
-    id: 1,
+    id: '1',
     name: 'Supersection A',
     sections: [
       {
-        id: 2,
+        id: '2',
         name: 'Supersection A Section A',
         families: [
           {
-            id: 2,
+            id: '2',
             name: 'Supersection A Section A Family A',
+            attributes: [
+              {
+                id: '111',
+                familyId: '2',
+                name: 'Attribute A of family A',
+              },
+              {
+                id: '112',
+                familyId: '2',
+                name: 'Attribute B of family A',
+              },
+              {
+                id: '113',
+                familyId: '2',
+                name: 'Attribute C of family A',
+              },
+            ]
           },
           {
-            id: 3,
+            id: '3',
             name: 'Supersection A Section A Family B',
+            attributes: [
+              {
+                id: '222',
+                familyId: '3',
+                name: 'Attribute A of family B',
+              },
+              {
+                id: '223',
+                familyId: '3',
+                name: 'Attribute B of family B',
+              },
+              {
+                id: '224',
+                familyId: '3',
+                name: 'Attribute C of family B',
+              },
+            ]
           },
         ],
       },
       {
-        id: 3,
+        id: '3',
         name: 'Supersection A Section B',
+        families: [
+          {
+            id: '6',
+            name: 'Supersection A Section B Family A',
+            attributes: [
+              {
+                id: '111',
+                familyId: '2',
+                name: 'Attribute A of family A',
+              },
+              {
+                id: '112',
+                familyId: '2',
+                name: 'Attribute B of family A',
+              },
+              {
+                id: '113',
+                familyId: '2',
+                name: 'Attribute C of family A',
+              },
+            ]
+          },
+          {
+            id: '7',
+            name: 'Supersection A Section B Family B',
+            attributes: [
+              {
+                id: '222',
+                familyId: '3',
+                name: 'Attribute A of family B',
+              },
+              {
+                id: '223',
+                familyId: '3',
+                name: 'Attribute B of family B',
+              },
+              {
+                id: '224',
+                familyId: '3',
+                name: 'Attribute C of family B',
+              },
+            ]
+          },
+        ],
       },
     ],
   },
   {
-    id: 2,
+    id: '2',
     name: 'Supersection B',
     sections: [
       {
-        id: 4,
+        id: '4',
         name: 'Supersection B Section A',
+        families: [
+          {
+            id: '9',
+            name: 'Supersection B Section A Family A',
+            attributes: [
+              {
+                id: '111',
+                familyId: '2',
+                name: 'Attribute A of family A',
+              },
+              {
+                id: '112',
+                familyId: '2',
+                name: 'Attribute B of family A',
+              },
+              {
+                id: '113',
+                familyId: '2',
+                name: 'Attribute C of family A',
+              },
+            ]
+          },
+          {
+            id: '12',
+            name: 'Supersection B Section A Family B',
+            attributes: [
+              {
+                id: '222',
+                familyId: '3',
+                name: 'Attribute A of family B',
+              },
+              {
+                id: '223',
+                familyId: '3',
+                name: 'Attribute B of family B',
+              },
+              {
+                id: '224',
+                familyId: '3',
+                name: 'Attribute C of family B',
+              },
+            ]
+          },
+        ],
       },
       {
-        id: 5,
+        id: '5',
         name: 'Supersection B Section B',
+        families: [
+          {
+            id: '23',
+            name: 'Supersection B Section B Family A',
+            attributes: [
+              {
+                id: '111',
+                familyId: '2',
+                name: 'Attribute A of family A',
+              },
+              {
+                id: '112',
+                familyId: '2',
+                name: 'Attribute B of family A',
+              },
+              {
+                id: '113',
+                familyId: '2',
+                name: 'Attribute C of family A',
+              },
+            ]
+          },
+          {
+            id: '37',
+            name: 'Supersection B Section B Family B',
+            attributes: [
+              {
+                id: '222',
+                familyId: '3',
+                name: 'Attribute A of family B',
+              },
+              {
+                id: '223',
+                familyId: '3',
+                name: 'Attribute B of family B',
+              },
+              {
+                id: '224',
+                familyId: '3',
+                name: 'Attribute C of family B',
+              },
+            ]
+          },
+        ],
       },
     ],
   },
 ]
 
-const superSectionTemplate =
-  `<div> 
-    <SuperSection 
-      :superSections="superSections" 
-      :callbackListener="callbackListener" 
-    /> 
-    <SectionComponent 
-      v-if="currentSelectedSuperSection" 
-      :sections="availableSections" 
-      :sectionCallbackListener="sectionCallbackListener" 
-    />
-  </div>`
+const superSectionTemplate = "<superSection />"
 
 export const Default = () => ({
-  // components: { SuperSection, SectionComponent, Family },
-  components: { SuperSection, SectionComponent },
-
+  components: { SuperSection },
+  store,
   template: superSectionTemplate,
-  data: () => {
-    return {
-      currentSelectedSuperSection: null,
-      selectedSections: [],
+  computed: {
+    superSections() {
+      return this.$store.state.superSections
+    },
+    currentSelectedSuperSection() {
+      return this.$store.state.currentSelectedSuperSection
+    },
+  },
+  methods:  {
+    callbackListener(evt) {
+      this.$store.commit('callbackListener', evt)
     }
   },
-  props: {
-    superSections: {
-      default: array('superSections', superSections),
-    },
-  },
-  computed: {
-    availableSections: function() {
-      const sections = superSections.reduce((result, superSection) => {
-        if (superSection.id == this.currentSelectedSuperSection) {
-          result = superSection.sections
-        }
-        return result
-      }, [])
-      console.log(sections)
-      return sections
-    },
-    // availableFamilies: function() {
-    //   const families = this.availableSections.reduce((result, section) => {
-    //     for (let index = 0; index < this.selectedSections.length; index ++) {
-    //       if (this.selectedSections[index] == section.name) {
-    //         result.push(section.families)
-    //       }
-    //     }
-    //     return result
-    //   }, [] )
-    //   console.log("families: ", families.flat())
-    //   return families.flat()
-    // }
-  },
-  methods: actionsData,
 })

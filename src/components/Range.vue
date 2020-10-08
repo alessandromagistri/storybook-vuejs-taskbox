@@ -42,9 +42,8 @@ export default {
 
 <style scoped>
 td {
-  border: solid black 1px;
+  border: none;
   text-align: center;
-  padding: 5px;
 }
 
 .cell {

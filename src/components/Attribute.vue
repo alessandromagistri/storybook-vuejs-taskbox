@@ -1,14 +1,17 @@
 <template>
       <tr> 
         <td>{{this.attribute}}</td>
-        <td>{{this.value}}</td>
+        <td>{{this.familyId}}</td>
         <td> 
-          <statusEnabler  :enabled="this.keyEnabled" name="Key" /> 
+          <!-- <statusEnabler  :enabled="this.keyEnabled" name="Key" />  -->
+          {{this.id}}
         </td>
-        <td>
+        <!-- <td>
           <statusEnabler  :enabled="this.required" name="Required" />
+        </td> -->
+        <td>
+          <range :min="0" :max="12" :enabled="true" />
         </td>
-        <range :min="0" :max="12" :enabled="true" />
       </tr>
 </template>
 
@@ -26,29 +29,31 @@ export default {
       required: true,
       default: 'Attribute',
     },
-    value: {
+    familyId: {
       type: String,
       required: true,
-      default: 'Value',
+      default: 'familyID',
     },
-    keyEnabled: {
-      type: Boolean,
+    id: {
+      type: String,
       required: true,
-      default: false,
-    },
-    required: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
+      default: "ID"
+    }
+  
+    // },
+    // keyEnabled: {
+    //   type: Boolean,
+    //   required: true,
+    //   default: false,
+    // },
+    // required: {
+    //   type: Boolean,
+    //   required: true,
+    //   default: false,
+    // },
   }
 }
 </script>
 
-<style scoped>
-table, th, td{
-  border: solid black 1px;
-  padding: 5px;
-  text-align: center;
-}
+<style>
 </style>

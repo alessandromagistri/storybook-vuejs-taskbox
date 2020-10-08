@@ -1,6 +1,6 @@
 import SectionComponent from './SectionComponent'
-import Family from './Family'
-import { withKnobs, array } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
+import store from '../store'
 
 export default {
   title: 'SectionComponent',
@@ -10,10 +10,8 @@ export default {
 
 export const actionsData = {
   sectionCallbackListener(evt) {
-    if (!this.selectedSections.includes(evt.target.value)) {
-      this.selectedSections.push(evt.target.value)
-    }
-    console.log(this.selectedSections)
+    console.log("HEYHEY")
+    this.$store.commit('sectionCallbackListener', evt)
   },
   
   familyCallbackListener(evt) {
@@ -24,86 +22,35 @@ export const actionsData = {
   },
 }
 
-export const sections = [
-  {
-    id: 2,
-    name: "Supersection A Section A",
-    families: [
-      {
-        id: 2,
-        name: "Supersection A Section A Family A",
-      },
-      {
-        id: 3,
-        name: "Supersection A Section A Family B",
-      },
-      {
-        id: 4,
-        name: "Supersection A Section A Family C",
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Supersection A Section B",
-    families: [
-      {
-        id: 5,
-        name: "Supersection A Section B Family A",
-      },
-      {
-        id: 6,
-        name: "Supersection A Section B Family B",
-      },
-      {
-        id: 7,
-        name: "Supersection A Section B Family C",
-      },
-    ],
-  }
-]
-
-const sectionComponentTemplate = 
-  `<div> 
-    <sectionComponent 
-      :sections="sections" 
-      :sectionCallbackListener="sectionCallbackListener" 
-    /> 
-    <family 
-      v-if="selectedSections.length !== 0" 
-      :families="availableFamilies" 
-      :familyCallbackListener = "familyCallbackListener"
-    /> 
-  </div>`
-
+const sectionComponentTemplate = `<sectionComponent />`  
+  
+    // <family 
+    //   v-if="selectedSections.length !== 0" 
+    //   :families="availableFamilies" 
+    //   :familyCallbackListener = "familyCallbackListener"
+    // /> 
 
 export const Default = () => ({
-  components: { SectionComponent, Family }, 
+  components: { SectionComponent }, 
+  store,
   template: sectionComponentTemplate,
   data: () => {
     return {
       selectedSections: [],
-      selectedFamilies: [],
     }
-  },
-  props: {
-    sections: {
-      default: array('sections', sections),
-    },
   },
   computed:{
-    availableFamilies: function() {
-      const families = sections.reduce((result, section) => {
-        for (let index = 0; index < this.selectedSections.length; index ++) {
-          if (this.selectedSections[index] == section.name) {
-            result.push(section.families)
-          }
+    availableSections() {
+      const sections = this.$store.state.superSections.reduce((result, superSection) => {
+        if (superSection.id == this.$store.state.currentSelectedSuperSection) {
+          result = superSection.sections
         }
         return result
-      }, [] )
-      console.log("families: ", families.flat())
-      return families.flat()
-    }
+      }, [])
+      console.log(sections)
+      this.$store.commit('assignAvailableSections', sections)
+      console.log("AVAILABLE SECTIONS: ", this.$store.state.availableSections)
+      return sections
+    },
   },
-  methods: actionsData,
 })

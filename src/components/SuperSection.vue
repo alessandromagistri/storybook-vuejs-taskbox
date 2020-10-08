@@ -3,15 +3,17 @@
     Select a superSection
 
     <select @change="callbackListener">
-      <option v-for="superSection in superSections" 
-      :key='superSection.id' 
-      :value="superSection.id" >{{superSection.name}}</option> 
+      <option 
+        v-for="superSection in superSections" 
+        :key='superSection.id' 
+        :value="superSection.id"
+      >
+      {{superSection.name}}
+      </option> 
     </select> 
-
+   
     <sectionComponent 
       v-if="currentSelectedSuperSection" 
-      :sections="availableSections" 
-      :sectionCallbackListener="sectionCallbackListener" 
     />
     
   </div>
@@ -19,32 +21,26 @@
 
 <script>
 import SectionComponent from './SectionComponent'
+import store from '../store'
 export default {
   title: "section",
+  store,
   components: {
     SectionComponent,
   },
-  data: () => {
-    return {
-      currentSelectedSuperSection: null,
+  methods:  {
+    callbackListener(evt) {
+      this.$store.commit('callbackListener', evt)
     }
   },
-  methods:  {
-    debug (evt)  {
-      console.log(evt)
+  computed: {
+    superSections() {
+      return this.$store.state.superSections
     },
-  },
-  props: {
-    superSections: {
-      type: Array,
-      required: true,
-      default: []
+    currentSelectedSuperSection() {
+      return this.$store.state.currentSelectedSuperSection
     },
-    callbackListener: {
-      required: true,
-      type: Function,
-    },
-  },
+  }
 }
 </script>
 
