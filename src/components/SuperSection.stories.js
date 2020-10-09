@@ -1,5 +1,4 @@
 import SuperSection from './SuperSection'
-import store from '../store'
 import { withKnobs } from '@storybook/addon-knobs'
 
 export default {
@@ -13,7 +12,7 @@ export const actionsData = {
     if (!this.selectedFamilies.includes(evt.target.value)) {
       this.selectedFamilies.push(evt.target.value)
     }
-    console.log(this.selectedFamilies)
+    console.log("Selected families: ", this.selectedFamilies)
   },
 }
 
@@ -228,7 +227,6 @@ const superSectionTemplate = "<superSection />"
 
 export const Default = () => ({
   components: { SuperSection },
-  store,
   template: superSectionTemplate,
   computed: {
     superSections() {
@@ -240,7 +238,7 @@ export const Default = () => ({
   },
   methods:  {
     callbackListener(evt) {
-      this.$store.commit('callbackListener', evt)
+      this.$store.dispatch('callbackListener', evt)
     }
   },
 })

@@ -43,7 +43,6 @@ export default {
 
   computed: {
     selectedKeys() {
-      debugger
       return Object.keys(this.values)
     },
     selectedStoreEntries() {
@@ -54,20 +53,9 @@ export default {
   methods: {
     deleteElement(value)  {
       this.$store.dispatch('deleteSelectedValue', {key:this.storeKey, value})
-      // name=='Sections'
-      // ? this.$store.commit('deleteSelectedSection', index)
-      // : this.$store.commit('deleteSelectedFamily', index)    
-      console.log("Values now is: ", this.values)
+      // console.log("Values now is: ", this.values)
     },
   },
-
-  // computed: {
-  //   selectedValues() {
-  //     name=='sections' ? values = this.$store.state.selectedSections : value = this.$store.state.selectedFamilies
-      
-  //   }
-
-  // }
 }
 </script>
 

@@ -21,7 +21,7 @@
 
 <script>
 import SectionComponent from './SectionComponent'
-import store from '../store'
+import store from '../store/store'
 export default {
   title: "section",
   store,
@@ -30,15 +30,16 @@ export default {
   },
   methods:  {
     callbackListener(evt) {
-      this.$store.commit('callbackListener', evt)
+      this.$store.dispatch('initializeSelectedSections')
+      this.$store.dispatch('callbackListener', evt)
     }
   },
   computed: {
     superSections() {
-      return this.$store.state.superSections
+      return this.$store.state.products
     },
     currentSelectedSuperSection() {
-      return this.$store.state.currentSelectedSuperSection
+      return this.$store.state.superSections.currentSelectedSuperSection
     },
   }
 }

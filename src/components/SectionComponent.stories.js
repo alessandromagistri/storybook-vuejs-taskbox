@@ -1,6 +1,5 @@
 import SectionComponent from './SectionComponent'
 import { withKnobs } from '@storybook/addon-knobs';
-import store from '../store'
 
 export default {
   title: 'SectionComponent',
@@ -10,7 +9,6 @@ export default {
 
 export const actionsData = {
   sectionCallbackListener(evt) {
-    console.log("HEYHEY")
     this.$store.commit('sectionCallbackListener', evt)
   },
   
@@ -18,7 +16,6 @@ export const actionsData = {
     if (!this.selectedFamilies.includes(evt.target.value)) {
       this.selectedFamilies.push(evt.target.value)
     }
-    console.log(this.selectedFamilies)
   },
 }
 
@@ -31,8 +28,7 @@ const sectionComponentTemplate = `<sectionComponent />`
     // /> 
 
 export const Default = () => ({
-  components: { SectionComponent }, 
-  store,
+  components: { SectionComponent },
   template: sectionComponentTemplate,
   data: () => {
     return {
@@ -41,15 +37,13 @@ export const Default = () => ({
   },
   computed:{
     availableSections() {
-      const sections = this.$store.state.superSections.reduce((result, superSection) => {
+      const sections = this.$store.state.products.reduce((result, superSection) => {
         if (superSection.id == this.$store.state.currentSelectedSuperSection) {
           result = superSection.sections
         }
         return result
       }, [])
-      console.log(sections)
       this.$store.commit('assignAvailableSections', sections)
-      console.log("AVAILABLE SECTIONS: ", this.$store.state.availableSections)
       return sections
     },
   },

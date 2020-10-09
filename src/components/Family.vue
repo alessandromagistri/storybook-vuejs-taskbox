@@ -6,7 +6,7 @@
       <option 
         v-for="family in availableFamilies" 
         :key='family.id' 
-        :value="family.name" 
+        :value="family.id" 
       >
         {{family.name}}
       </option> 
@@ -44,9 +44,9 @@ export default {
   },
   computed: {
     availableFamilies() {
-      const families = this.$store.state.availableSections.reduce((result, section) => {
+      const families = this.$store.state.sections.availableSections.reduce((result, section) => {
         const sectionFamilies = this.selectedSections.reduce((filteredFamilies, selectedSection) => {
-            if (selectedSection == section.name) {
+            if (selectedSection == section.id) {
               filteredFamilies.push(...section.families)
             }
 
@@ -55,21 +55,20 @@ export default {
 
         return [...result, ...sectionFamilies]
       }, [] )
-      console.log("families: ", families)
 
       return families
     },
     selectedFamilies() {
-      return this.$store.state.selectedFamilies
+      return this.$store.state.families.selectedFamilies
     },
     selectedSections() {
-      return this.$store.state.selectedSections
+      return this.$store.state.sections.selectedSections
     },
   },
 
   methods: {
     familyCallbackListener(evt) {
-      this.$store.commit('familyCallbackListener', evt.target.value)
+      this.$store.dispatch('familyCallbackListener', evt.target.value)
     }
   },
 }

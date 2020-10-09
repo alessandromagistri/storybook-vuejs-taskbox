@@ -5,7 +5,7 @@
       <option 
         v-for="section in availableSections" 
         :key='section.id' 
-        :value="section.name" 
+        :value="section.id" 
       > 
       {{section.name}}
       </option> 
@@ -35,31 +35,31 @@ export default {
     SelectedValues,
   },
   computed: { 
-
     availableSections() {
-      const sections = this.$store.state.superSections.reduce((result, superSection) => {
-        if (superSection.id == this.$store.state.currentSelectedSuperSection) {
+      const sections = this.$store.state.products.reduce((result, superSection) => {
+        if (superSection.id == this.$store.state.superSections.currentSelectedSuperSection) {
           result = superSection.sections
         }
 
         return result
       }, [])
-      console.log(sections)
       this.$store.commit('assignAvailableSections', sections)
+
       return sections
     },
-
     selectedSections() {
-      return this.$store.state.selectedSections
+      return this.$store.state.sections.selectedSections
     },
+    // selectedSectionsNames() {
+    //   this.$store.commit('selectedSectionsNames')
+    // },
   },
   
   methods: {
     sectionCallbackListener(evt) {
-      this.$store.commit('sectionCallbackListener', evt.target.value)
+      this.$store.dispatch('sectionCallbackListener', evt.target.value)
     },
   }
-
 }
 </script>
 

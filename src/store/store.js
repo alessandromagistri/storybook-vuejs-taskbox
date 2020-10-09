@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import superSections from './modules/superSections'
+import sections from './modules/sections'
+import families from './modules/families'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-//cambia name con id
+  modules: {
+    superSections,
+    sections,
+    families,
+  },
   state: {
-    superSections: [
+    products: [
       {
         id: '1',
         name: 'Supersection A',
@@ -212,73 +218,60 @@ export default new Vuex.Store({
         ],
       },
     ],
-    currentSelectedSuperSection: null,
-
-    selectedSections: [],
-    availableSections: [],
-
-    selectedFamilies: [],
   },
 
   mutations: {
-    callbackListener(state, evt) {
-      state.currentSelectedSuperSection = evt.target.value
-      state.selectedSections = []
-    },
-    sectionCallbackListener(state, sectionId) {
-      if (!state.selectedSections.includes(sectionId)) {
-        state.selectedSections.push(sectionId)
-      }
-      console.log(state.selectedSections)
-    },
-    familyCallbackListener(state, familyId) {
-      state.selectedFamilies.push(familyId)
-    },
-    assignAvailableSections(state, sections) {
-      state.availableSections = sections
-    },
-
-    deleteSelectedSection(state, sectionId) {
-      if (state.selectedSections.includes(sectionId)) {
-        state.selectedSections = state.selectedSections.filter(removeSectionId => removeSectionId!==sectionId)
-      }
-      commit('deleteSelectedFamiliesFromSection', sectionId, {root:true})
-      console.log(state.selectedSections)
-    },
-    deleteSelectedFamily(state, familyId) {
-      if (state.selectedFamilies.includes(familyId)) {
-        state.selectedFamilies = state.selectedFamilies.filter(removeFamilyId => removeFamilyId!==familyId)
-        console.log(state.selectedFamilies)
-      }
-    },
     deleteSelectedFamiliesFromSection(state, sectionId) {
-      state.superSections.reduce((reducedSuperSections, superSection) => {
+      state.products.reduce((reducedSuperSections, superSection) => {
         superSection.sections.reduce((reducedSections, section) => {
-          if(sectionId == section.name) {
+          if(sectionId == section.id) {
             section.families.reduce((reducedFamilies, family ) => {
-              commit('deleteSelectedFamily', family.name)
+              commit('deleteSelectedFamily', family.id)
             })
           }
         })
       })
-      console.log(state.selectedFamilies)
+      console.log("selectedFamilies now is: ", state.families.selectedFamilies)
+    },
+
+    deleteSelectedFamiliesByFamilyId(state, sectionId) {
+      console.log(state.families)
+      state.products.reduce((reducedSuperSections, superSection) => {
+        superSection.sections.reduce((reducedSections, section) => {
+          if(sectionId == section.id) {
+            section.families.reduce((reducedFamilies, family ) => {
+              console.log('removing family ' + family.id, {families: state.families})
+              state.families.selectedFamilies = state.families.selectedFamilies.filter(familyId => {
+
+                return  familyId != family.id
+              })
+
+              return reducedFamilies
+            }, [])
+          }
+
+          return reducedSections
+        }, [])
+
+        return reducedSuperSections
+      }, [])
+      console.log("selectedFamilies now is: ", state.families.selectedFamilies)
+
     }
   },
-
   actions: {
-    deleteSelectedSection({commit}, payload) {
-      commit('deleteSelectedSection', payload)
-    },
-    deleteSelectedValue({commit}, payload) {
-      debugger
+    deleteSelectedValue({dispatch}, payload) {
       switch (payload.key) {
         case "selectedFamilies": 
-          commit('deleteSelectedFamily', payload.value)
+          dispatch('deleteSelectedFamily', payload.value)
           break
-      case "selectedSections": 
-          commit('deleteSelectedSection', payload.value)
+        case "selectedSections": 
+          dispatch('deleteSelectedSection', payload.value)
           break
       }
     }
   },
+  deleteSelectedFamiliesFromSection({commit}, sectionId) {
+    commit('deleteSelectedFamiliesFromSection', sectionId)
+  }
 })
