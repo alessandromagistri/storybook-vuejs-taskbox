@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import superSections from './modules/superSections'
 import sections from './modules/sections'
 import families from './modules/families'
+import attributes from './modules/attributes'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -10,6 +11,7 @@ export default new Vuex.Store({
     superSections,
     sections,
     families,
+    attributes
   },
   state: {
     products: [
@@ -26,19 +28,34 @@ export default new Vuex.Store({
                 name: 'Supersection A Section A Family A',
                 attributes: [
                   {
-                    id: '111',
-                    familyId: '2',
                     name: 'Attribute A of family A',
+                    id: "111",
+                    familyId: '2',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '112',
-                    familyId: '2',
                     name: 'Attribute B of family A',
+                    id: "112",
+                    familyId: '2',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '113',
-                    familyId: '2',
                     name: 'Attribute C of family A',
+                    id: "113",
+                    familyId: '2',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                 ]
               },
@@ -47,19 +64,34 @@ export default new Vuex.Store({
                 name: 'Supersection A Section A Family B',
                 attributes: [
                   {
-                    id: '222',
-                    familyId: '3',
                     name: 'Attribute A of family B',
+                    id: "222",
+                    familyId: '3',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '223',
-                    familyId: '3',
                     name: 'Attribute B of family B',
+                    id: "223",
+                    familyId: '3',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '224',
-                    familyId: '3',
                     name: 'Attribute C of family B',
+                    id: "224",
+                    familyId: '3',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                 ]
               },
@@ -74,19 +106,34 @@ export default new Vuex.Store({
                 name: 'Supersection A Section B Family A',
                 attributes: [
                   {
-                    id: '111',
-                    familyId: '2',
                     name: 'Attribute A of family A',
+                    id: "111",
+                    familyId: '6',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '112',
-                    familyId: '2',
                     name: 'Attribute B of family A',
+                    id: "112",
+                    familyId: '6',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '113',
-                    familyId: '2',
                     name: 'Attribute C of family A',
+                    id: "113",
+                    familyId: '6',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                 ]
               },
@@ -95,19 +142,34 @@ export default new Vuex.Store({
                 name: 'Supersection A Section B Family B',
                 attributes: [
                   {
-                    id: '222',
-                    familyId: '3',
                     name: 'Attribute A of family B',
+                    id: "222",
+                    familyId: '7',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '223',
-                    familyId: '3',
                     name: 'Attribute B of family B',
+                    id: "223",
+                    familyId: '7',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '224',
-                    familyId: '3',
                     name: 'Attribute C of family B',
+                    id: "224",
+                    familyId: '7',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                 ]
               },
@@ -128,19 +190,34 @@ export default new Vuex.Store({
                 name: 'Supersection B Section A Family A',
                 attributes: [
                   {
-                    id: '111',
-                    familyId: '2',
                     name: 'Attribute A of family A',
+                    id: "111",
+                    familyId: '9',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '112',
-                    familyId: '2',
                     name: 'Attribute B of family A',
+                    id: "112",
+                    familyId: '9',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '113',
-                    familyId: '2',
                     name: 'Attribute C of family A',
+                    id: "113",
+                    familyId: '9',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                 ]
               },
@@ -149,19 +226,34 @@ export default new Vuex.Store({
                 name: 'Supersection B Section A Family B',
                 attributes: [
                   {
-                    id: '222',
-                    familyId: '3',
                     name: 'Attribute A of family B',
+                    id: "222",
+                    familyId: '12',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '223',
-                    familyId: '3',
                     name: 'Attribute B of family B',
+                    id: "223",
+                    familyId: '12',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '224',
-                    familyId: '3',
                     name: 'Attribute C of family B',
+                    id: "224",
+                    familyId: '12',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                 ]
               },
@@ -176,19 +268,34 @@ export default new Vuex.Store({
                 name: 'Supersection B Section B Family A',
                 attributes: [
                   {
-                    id: '111',
-                    familyId: '2',
                     name: 'Attribute A of family A',
+                    id: "111",
+                    familyId: '23',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '112',
-                    familyId: '2',
                     name: 'Attribute B of family A',
+                    id: "112",
+                    familyId: '23',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '113',
-                    familyId: '2',
                     name: 'Attribute C of family A',
+                    id: "113",
+                    familyId: '23',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                 ]
               },
@@ -197,19 +304,34 @@ export default new Vuex.Store({
                 name: 'Supersection B Section B Family B',
                 attributes: [
                   {
-                    id: '222',
-                    familyId: '3',
                     name: 'Attribute A of family B',
+                    id: "222",
+                    familyId: '37',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '223',
-                    familyId: '3',
                     name: 'Attribute B of family B',
+                    id: "223",
+                    familyId: '37',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                   {
-                    id: '224',
-                    familyId: '3',
                     name: 'Attribute C of family B',
+                    id: "224",
+                    familyId: '37',
+                    keyEnabled: true,
+                    requiredEnabled: true,
+                    rangeEnabled: true,
+                    rangeMin: 1,
+                    rangeMax: 10,
                   },
                 ]
               },
@@ -257,20 +379,22 @@ export default new Vuex.Store({
       }, [])
       console.log("selectedFamilies now is: ", state.families.selectedFamilies)
 
-    }
+    },
   },
   actions: {
-    deleteSelectedValue({dispatch}, payload) {
-      switch (payload.key) {
-        case "selectedFamilies": 
-          dispatch('deleteSelectedFamily', payload.value)
-          break
-        case "selectedSections": 
-          dispatch('deleteSelectedSection', payload.value)
-          break
+
+  deleteSelectedValue({dispatch}, payload) {
+    switch (payload.key) {
+      case "selectedFamilies": 
+        dispatch('deleteSelectedFamily', payload.value)
+        break
+      case "selectedSections": 
+        dispatch('deleteSelectedSection', payload.value)
+        break
       }
     }
   },
+
   deleteSelectedFamiliesFromSection({commit}, sectionId) {
     commit('deleteSelectedFamiliesFromSection', sectionId)
   }

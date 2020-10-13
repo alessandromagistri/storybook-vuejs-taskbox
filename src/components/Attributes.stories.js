@@ -15,30 +15,41 @@ export const actionsData = {
 export const attributes =  [
     {
       attribute: 'AttributeOne',
-      value: 'ValueOne',
+      familyId: '1',
       keyEnabled: false,
-      required: false, 
+      requiredEnabled: false, 
+      rangeEnabled: false, 
+      rangeMin: 1,
+      rangeMax: 10,
     },
     {
       attribute: 'AttributeTwo',
-      value: 'ValueTwo',
+      familyId: '2',
       keyEnabled: true,
-      required: false,
+      requiredEnabled: false,
+      rangeEnabled: true, 
+      rangeMin: 4,
+      rangeMax: 11,
     },
     {
       attribute: 'AttributeThree',
-      value: 'ValueThree',
+      familyId: '3',
       keyEnabled: false,
-      required: true,
+      requiredEnabled: true,
+      rangeEnabled: false, 
+      rangeMin: 2,
+      rangeMax: 21,
     },
     {
       attribute: 'AttributeFour',
-      value: 'ValueFour',
+      familyId: '4',
       keyEnabled: true,
-      required: true,
+      requiredEnabled: true,
+      rangeEnabled: false, 
+      rangeMin: 3,
+      rangeMax: 10,
     },
   ]
-
 
 const attributesTemplate = '<attributes :attributes="attributes" />'
 

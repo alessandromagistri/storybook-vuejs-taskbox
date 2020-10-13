@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions'
-import { withKnobs, number, boolean } from '@storybook/addon-knobs';
+import { withKnobs, number, text } from '@storybook/addon-knobs';
 import Range from './Range'
 export default {
   title: 'Range',
@@ -14,41 +14,36 @@ export const actionsData = {
 export const rangeData = {
   min: 0,
   max: 10,
-  enabled: false,
+  attributeId: "AttributeId",
+  familyId: "FamilyId"
+
 }
 
-const rangeTemplate =`<range :min="min" :max="max" :enabled="enabled"/>`
+const rangeTemplate =`
+<range 
+  :rangeMin="rangeMin"
+  :rangeMax="rangeMax"
+  :familyId="familyId"
+  :attributeId="attributeId"
+/>`
 
 export const Default = () => ({
   components: { Range }, 
   template: rangeTemplate,
   methods: actionsData,
   props: {
-    min: {
-      default: number('min', 1),
+    rangeMin: {
+      default: number('rangeMin', 1),
     },
-    max: {
-      default: number('max', 23),
+    rangeMax: {
+      default: number('rangeMax', 10),
     },
-    enabled: {
-      default: boolean('enabled', false),
+    attributeId: {
+      default: text('attributeId', rangeData.attributeId),
+    },
+    familyId: {
+      default: text('familyId', rangeData.familyId),
     },
   },
 })
 
-export const Enable = () => ({
-  components: { Range }, 
-  template: rangeTemplate,
-  methods: actionsData,
-  props: {
-    min: {
-      default: number('min', 1),
-    },
-    max: {
-      default: number('max', 23),
-    },
-    enabled: {
-      default: boolean('enabled', true),
-    },
-  },
-})

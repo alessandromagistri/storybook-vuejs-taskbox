@@ -9,10 +9,10 @@
         v-for="(value, index) in values" 
         :key="index" 
       >      
-        {{value}}
+        {{value.name}}
         <div 
           style="background-color:red; width:fit-content; padding: 5px;"
-          @click="deleteElement(value)"
+          @click="deleteElement(value.id)"
         >
           X
         </div>
@@ -53,7 +53,6 @@ export default {
   methods: {
     deleteElement(value)  {
       this.$store.dispatch('deleteSelectedValue', {key:this.storeKey, value})
-      // console.log("Values now is: ", this.values)
     },
   },
 }

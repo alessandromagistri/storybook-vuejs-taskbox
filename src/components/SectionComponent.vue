@@ -14,7 +14,7 @@
     <selectedValues
       v-if="selectedSections.length != 0"
       name="Sections"
-      :values="selectedSections"
+      :values="selectedSectionsNames"
       storeKey="selectedSections"
     />
     
@@ -43,16 +43,27 @@ export default {
 
         return result
       }, [])
-      this.$store.commit('assignAvailableSections', sections)
+      this.$store.dispatch('assignAvailableSections', sections)
 
       return sections
     },
     selectedSections() {
       return this.$store.state.sections.selectedSections
     },
-    // selectedSectionsNames() {
-    //   this.$store.commit('selectedSectionsNames')
-    // },
+    selectedSectionsNames(){
+      const sectionsNames = this.$store.state.sections.availableSections.reduce((result, section) => {
+        this.$store.state.sections.selectedSections.reduce((filteredSelectedSections, selectedSection) => {
+          if(selectedSection == section.id) {
+            result.push({ name: section.name, id: selectedSection })
+          }
+        }, []) 
+
+        return [...result]
+      }, [])
+
+      return sectionsNames
+    },
+
   },
   
   methods: {

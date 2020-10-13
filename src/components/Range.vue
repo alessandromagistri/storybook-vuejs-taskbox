@@ -1,8 +1,28 @@
 <template>
   <div class="cell">
-    <td> <statusEnabler  :enabled="this.enabled" name="Enabled" /> </td>
-    <td> {{this.min}} </td>
-    <td> {{this.max}} </td>
+
+      <statusEnabler
+        :attributeId="attributeId"
+        :familyId="familyId"
+        name="Range"
+      /> 
+      <input 
+        type="number" 
+        id="min" 
+        name="Min"
+        min="0" 
+        max="100"
+        :value="min"
+      >
+      <input 
+        type="number" 
+        id="max" 
+        name="Max"
+        min="0" 
+        max="100"
+        :value="max"
+      >
+
   </div>
 </template>
 
@@ -10,14 +30,9 @@
 import StatusEnabler from './StatusEnabler'
 
 export default {
-  name: 'Range',
+  name: 'range',
   components: {
-    StatusEnabler,
-  },
-  data: () => {
-    return {
-      active: false,
-    }
+    StatusEnanbler
   },
   props: {
     min: {
@@ -30,13 +45,17 @@ export default {
       required: true,
       default: 0,
     },
-    enabled: {
-      type: Boolean,
+    attributeId: {
+      type: String,
       required: true,
-      default: false,
+      default: '',
     },
+    familyId: {
+      type: String,
+      required: true,
+      default: '',
+    }
   }
-
 }
 </script>
 
@@ -49,5 +68,9 @@ td {
 .cell {
   display: flex;
   justify-content: space-around;
+}
+
+input {
+  width: 50px;
 }
 </style>

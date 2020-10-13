@@ -1,23 +1,42 @@
 <template>
   <div>
-    <div v-if="this.enabled"> Y </div>
-    <div v-else> N </div>
+    <input @click="handleAttributes" type='checkbox' :checked="enabled" :value="name" >
   </div>
 </template>
 
 <script>
 export default {
-  name: 'status-enabler',
+  name: 'StatusEnabler',
+
+  data: () => {
+    return {
+      enabled: false,
+    }
+  },
+
   props: {
     name: {
       type: String,
       required: true,
-      default: '',
+      default:"name of the status enabler"
     },
-    enabled: {
-      type: Boolean,
+
+    familyId: {
+      type: String,
       required: true,
-      default: false,
+      default: 'familyID',
+    },
+
+    attributeId: {
+      type: String,
+      required: true,
+      default: 'id',
+    },
+  },
+
+  methods: {
+    handleAttributes(evt) {
+      this.$store.dispatch('changeValueOfSelectedEnabler', {name: evt.target.value, attributeId: this.attributeId, familyId: this.familyId})    
     },
   },
 }

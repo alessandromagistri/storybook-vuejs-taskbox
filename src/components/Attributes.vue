@@ -4,25 +4,30 @@
       <tr>
         <th>Attribute</th>
         <th>FamilyId</th>
-        <th>Id</th>
-        <th colspan="3">Range (Min - Max)</th>
+        <th>Key</th>
+        <th>Required</th>
+        <th>Range (Min - Max)</th>
       </tr>
-    <attribute 
-        :attribute="attribute.name"
+      <rs-attribute />
+    <!-- <RSAttribute 
+        :attributeName="attribute.name"
         :familyId="attribute.familyId"
-        :id="attribute.id"
-        v-for="(attribute, index) in attributes" 
-        :key='index' 
-        />
+        :attributeId="attribute.id"
+        :rangeMin="attribute.rangeMin"
+        :rangeMax="attribute.rangeMax"
+        v-for="attribute in attributes" 
+        :key="attribute.id"
+        /> -->
     </table>
   </div>
 </template>
 
 <script>
-import Attribute from './Attribute'
+import RSAttribute from './RSAttribute'
 export default {
+  name:'Attributes',
   components: {
-    Attribute,
+    RSAttribute,
   },
   props: {
     attributes: {
@@ -31,7 +36,6 @@ export default {
       default: () => [],
     }
   }
-
 }
 </script>
 

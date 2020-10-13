@@ -1,5 +1,5 @@
-import { action } from '@storybook/addon-actions'
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import store from '../store/store'
+import { withKnobs, text } from '@storybook/addon-knobs';
 import StatusEnabler from './StatusEnabler'
 export default {
   title: 'StatusEnabler',
@@ -7,40 +7,26 @@ export default {
   excludeStories: /.*Data$/,
 }
 
-export const actionsData = {
-  isChecked: action('isChecked')
-}
-
 export const statusEnablerData = {
   enabled: false,
   name: ''
 }
 
-const statusTemplate = '<status-enabler :name="name" :enabled="enabled" />'
+const statusTemplate = '<status-enabler :name="name" :familyId="familyId" :attributeId="attributeId" />'
 
 export const Default = () => ({
+  store,
   components: { StatusEnabler }, 
   template: statusTemplate,
   props: {
-    enabled: {
-      default: () => boolean('enabled', false)
-    },
     name: {
       default: () => text('name', "name")
     },
-  },
-  methods: actionsData,
-})
-
-export const Enabled = () => ({
-  components: { StatusEnabler },
-  template: statusTemplate,
-  props: {
-    enabled: {
-      default: () => boolean('enabled', true)
+    familyId: {
+      default: () => text('familyId', "familyId")
     },
-    name: {
-      default: () => text('name', "enabled")
+    attributeId: {
+      default: () => text('attributeId', "attributeId")
     },
   },
 })
