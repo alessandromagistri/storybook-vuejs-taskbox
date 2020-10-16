@@ -1,7 +1,7 @@
 import { withKnobs, number, text } from '@storybook/addon-knobs';
 import RSAttribute from './RSAttribute'
 export default {
-  title: 'Attribute',
+  title: 'RSAttribute',
   decorators: [withKnobs],
   excludeStories: /.*Data$/,
 }
@@ -15,10 +15,10 @@ export const attribute = {
 }
 
 const statusTemplate = `
-    <rs-attribute 
+    <RSAttribute 
       :attributeName="attributeName" 
       :familyId="familyId" 
-      :id="attributeId"
+      :attributeId="attributeId"
       :rangeMin="rangeMin" 
       :rangeMax="rangeMax" 
     />`

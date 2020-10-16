@@ -5,13 +5,13 @@
     </div>
     <div>
       <div  
-        style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 5px;"
+        class="selectedValueBox"
         v-for="(value, index) in values" 
         :key="index" 
       >      
         {{value.name}}
         <div 
-          style="background-color:red; width:fit-content; padding: 5px;"
+          class="deleteBox"
           @click="deleteElement(value.id)"
         >
           X
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "SelectedValue",
+  name: "RSSelectedValues",
   props: {
     name: {
       type: String,
@@ -59,5 +59,30 @@ export default {
 </script>
 
 <style>
+.deleteBox {
+  background-color:rgb(233, 11, 11); 
+  width: fit-content;
+  padding: 4px;
+  padding-top: 3px;
+  padding-bottom: 1px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+.deleteBox:hover {
+  cursor:pointer
+}
+
+.selectedValueBox {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  margin-top: 5px;
+  border-radius: 10px;
+  padding-left: 20px;
+}
+.selectedValueBox:hover {
+  opacity: 0.9;
+  border: solid black 1px;
+}
 
 </style>

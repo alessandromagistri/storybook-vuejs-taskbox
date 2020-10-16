@@ -1,0 +1,79 @@
+{
+  ​​
+  "result": {
+    ​​
+    "direct": {
+      ​​
+      "8640861": {
+        ​​
+        "source_identifier": "rscomponents",
+        "source_part_number": "8640861",
+        "manufacturer_part_number": "8640861",
+        "manufacturer": "RS PRO",
+        "description": "Set giraviti RS PRO, 6 pezzi, lama Cromata e nichelata, fosfonio manganese",
+        "photo_url": "http:\/\/media.rs-online.com\/t_large\/F8640861-01.jpg",
+        "pricing_structure": "[{​​\"price\":14.4,\"for\":1}​​]"
+      }​​,
+      "1250400": {
+        ​​
+        "source_identifier": "rscomponents",
+        "source_part_number": "1250400",
+        "manufacturer_part_number": "1250400",
+        "manufacturer": "RS PRO",
+        "description": "Cacciavite a bussola RS PRO, Esagonale 5.5",
+        "photo_url": "http:\/\/media.rs-online.com\/t_large\/F1250400-01.jpg",
+        "pricing_structure": "[{​​\"price\":5.95,\"for\":1}​​]"
+      }​​
+    }​​,
+    "similar": {
+      ​​
+      "6685812": {
+        ​​
+        "source_identifier": "rscomponents",
+        "source_part_number": "6685812",
+        "manufacturer_part_number": "6685812",
+        "manufacturer": "RS PRO",
+        "description": "Cacciavite a bussola RS PRO, attacco 1\/4 poll esagonale, lunghezza 150 mm, , albero in cromo vanadio e tubo di",
+        "photo_url": "http:\/\/media.rs-online.com\/t_large\/F6685812-01.jpg",
+        "pricing_structure": "[{​​\"price\":9.72,\"for\":1}​​]"
+      }​​,
+      "1250402": {
+        ​​
+        "source_identifier": "rscomponents",
+        "source_part_number": "1250402",
+        "manufacturer_part_number": "1250402",
+        "manufacturer": "RS PRO",
+        "description": "Cacciavite a bussola RS PRO, 7 mm",
+        "photo_url": "http:\/\/media.rs-online.com\/t_large\/R1250402-01.jpg",
+        "pricing_structure": "[{​​\"price\":5.76,\"for\":1}​​]"
+      }​​
+    }​​
+  }​​,
+  "search": [{
+      ​​
+      "family-id": 1,
+      "attribute-id": 2,
+      "key": true,
+      "required": true,
+      "range": {
+        ​​
+        "active": true,
+        "min": 1,
+        "max": 10
+      }​​
+    }​​,
+    {
+      ​​
+      "family-id": 1,
+      "attribute-id": 3,
+      "key": true,
+      "required": false,
+      "range": {
+        ​​
+        "active": false,
+        "min": 1,
+        "max": 10
+      }​​
+    }​​
+  ]
+}​​

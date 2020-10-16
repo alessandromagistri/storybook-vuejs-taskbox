@@ -3,6 +3,9 @@
     Select a superSection
 
     <select @change="callbackListener">
+      <option disabled selected hidden > 
+        Choose a super section
+      </option>
       <option 
         v-for="superSection in superSections" 
         :key='superSection.id' 
@@ -12,7 +15,7 @@
       </option> 
     </select> 
    
-    <sectionComponent 
+    <RSSectionComponent 
       v-if="currentSelectedSuperSection" 
     />
     
@@ -20,13 +23,13 @@
 </template>
 
 <script>
-import SectionComponent from './SectionComponent'
+import RSSectionComponent from './RSSectionComponent'
 import store from '../store/store'
 export default {
-  title: "section",
+  name: "RSSuperSection",
   store,
   components: {
-    SectionComponent,
+    RSSectionComponent,
   },
   methods:  {
     callbackListener(evt) {

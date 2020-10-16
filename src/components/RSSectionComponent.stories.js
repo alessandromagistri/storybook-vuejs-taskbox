@@ -1,18 +1,18 @@
-import SectionComponent from './SectionComponent'
+import RSSectionComponent from './RSSectionComponent'
 import store from '../store/store'
 import { withKnobs } from '@storybook/addon-knobs';
 
 export default {
-  title: 'SectionComponent',
+  title: 'RSSectionComponent',
   decorators: [withKnobs],
   excludeStories: /.*Data$/,
 }
 
 
-const sectionComponentTemplate = `<sectionComponent />` 
+const sectionComponentTemplate = `<RSSectionComponent />` 
 
 export const Default = () => ({
   store,
-  components: { SectionComponent },
+  components: { RSSectionComponent },
   template: sectionComponentTemplate,
 })

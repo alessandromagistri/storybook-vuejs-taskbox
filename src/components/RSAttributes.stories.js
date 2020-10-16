@@ -1,9 +1,9 @@
-import Attributes from './Attributes'
+import RSAttributes from './RSAttributes'
 import { action } from '@storybook/addon-actions'
 import { withKnobs, array } from '@storybook/addon-knobs';
 
 export default {
-  title: 'Attributes',
+  title: 'RSAttributes',
   decorators: [withKnobs],
   excludeStories: /.*Data$/,
 }
@@ -14,7 +14,7 @@ export const actionsData = {
 
 export const attributes =  [
     {
-      attribute: 'AttributeOne',
+      name: 'AttributeOne',
       familyId: '1',
       keyEnabled: false,
       requiredEnabled: false, 
@@ -23,7 +23,7 @@ export const attributes =  [
       rangeMax: 10,
     },
     {
-      attribute: 'AttributeTwo',
+      name: 'AttributeTwo',
       familyId: '2',
       keyEnabled: true,
       requiredEnabled: false,
@@ -32,7 +32,7 @@ export const attributes =  [
       rangeMax: 11,
     },
     {
-      attribute: 'AttributeThree',
+      name: 'AttributeThree',
       familyId: '3',
       keyEnabled: false,
       requiredEnabled: true,
@@ -41,7 +41,7 @@ export const attributes =  [
       rangeMax: 21,
     },
     {
-      attribute: 'AttributeFour',
+      name: 'AttributeFour',
       familyId: '4',
       keyEnabled: true,
       requiredEnabled: true,
@@ -51,10 +51,10 @@ export const attributes =  [
     },
   ]
 
-const attributesTemplate = '<attributes :attributes="attributes" />'
+const attributesTemplate = '<RSAttributes :attributes="attributes" />'
 
 export const Default = () => ({
-  components: { Attributes }, 
+  components: { RSAttributes }, 
   template: attributesTemplate,
   props: {
     attributes: {

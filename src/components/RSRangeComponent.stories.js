@@ -1,8 +1,8 @@
 import { action } from '@storybook/addon-actions'
 import { withKnobs, number, text } from '@storybook/addon-knobs';
-import Range from './Range'
+import RSRangeComponent from './RSRangeComponent'
 export default {
-  title: 'Range',
+  title: 'RSRangeComponent',
   decorators: [withKnobs],
   excludeStories: /.*Data$/,
 }
@@ -20,7 +20,7 @@ export const rangeData = {
 }
 
 const rangeTemplate =`
-<range 
+<RSRangeComponent 
   :rangeMin="rangeMin"
   :rangeMax="rangeMax"
   :familyId="familyId"
@@ -28,7 +28,7 @@ const rangeTemplate =`
 />`
 
 export const Default = () => ({
-  components: { Range }, 
+  components: { RSRangeComponent }, 
   template: rangeTemplate,
   methods: actionsData,
   props: {

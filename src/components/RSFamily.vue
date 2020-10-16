@@ -3,6 +3,9 @@
 
     <select 
       @change="familyCallbackListener">
+      <option disabled selected hidden > 
+        Choose a family
+      </option>
       <option 
         v-for="family in availableFamilies" 
         :key='family.id' 
@@ -12,7 +15,7 @@
       </option> 
     </select>
 
-    <selectedValues
+    <RSSelectedValues
       v-if="selectedFamilies.length != 0"
       name="Families"
       :values="selectedFamiliesNames"
@@ -25,7 +28,7 @@
       :key="attributes.id"
     >
       <h3>{{attributes.name}}</h3>
-      <attributes 
+      <RSAttributes 
         :attributes="attributes" 
       />
     </div>
@@ -34,14 +37,14 @@
 </template>
 
 <script>
-import Attributes from './Attributes'
-import SelectedValues from './SelectedValues'
+import RSAttributes from './RSAttributes'
+import RSSelectedValues from './RSSelectedValues'
 
 export default {
-  name: "family",
+  name: "RSFamily",
   components: {
-    Attributes,
-    SelectedValues,
+    RSAttributes,
+    RSSelectedValues,
   },
   computed: {
     availableFamilies() {
@@ -65,11 +68,11 @@ export default {
       const attributes = this.$store.state.families.availableFamilies.reduce((result, family) => {
         this.$store.state.families.selectedFamilies.reduce((filteredSelectedFamilies, selectedFamily) => {
           if(selectedFamily == family.id) {
-            result.push(family.attributes)
+            result[family.id] = family.attributes
           }
-        },[])
+        },{})
 
-        return [...result]
+        return {...result}
       },[])
       this.$store.dispatch('assignAvailableAttributes', attributes )
 

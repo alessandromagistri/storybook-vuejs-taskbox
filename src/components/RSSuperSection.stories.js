@@ -1,8 +1,8 @@
-import SuperSection from './SuperSection'
+import RSSuperSection from './RSSuperSection'
 import { withKnobs } from '@storybook/addon-knobs'
 
 export default {
-  title: 'SuperSection',
+  title: 'RSSuperSection',
   decorators: [withKnobs],
   excludeStories: /.*Data$/,
 }
@@ -223,10 +223,10 @@ export const superSections = [
   },
 ]
 
-const superSectionTemplate = "<superSection />"
+const superSectionTemplate = "<RSSuperSection />"
 
 export const Default = () => ({
-  components: { SuperSection },
+  components: { RSSuperSection },
   template: superSectionTemplate,
   computed: {
     superSections() {

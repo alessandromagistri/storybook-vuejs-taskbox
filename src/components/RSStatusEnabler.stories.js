@@ -1,8 +1,8 @@
 import store from '../store/store'
 import { withKnobs, text } from '@storybook/addon-knobs';
-import StatusEnabler from './StatusEnabler'
+import RSStatusEnabler from './RSStatusEnabler'
 export default {
-  title: 'StatusEnabler',
+  title: 'RSStatusEnabler',
   decorators: [withKnobs],
   excludeStories: /.*Data$/,
 }
@@ -12,11 +12,11 @@ export const statusEnablerData = {
   name: ''
 }
 
-const statusTemplate = '<status-enabler :name="name" :familyId="familyId" :attributeId="attributeId" />'
+const statusTemplate = '<RSStatusEnabler :name="name" :familyId="familyId" :attributeId="attributeId" />'
 
 export const Default = () => ({
   store,
-  components: { StatusEnabler }, 
+  components: { RSStatusEnabler }, 
   template: statusTemplate,
   props: {
     name: {

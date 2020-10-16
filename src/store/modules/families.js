@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export default {
   state: () =>({
     selectedFamilies: [],
@@ -7,6 +9,9 @@ export default {
 
   mutations: {
     familyCallbackListener(state, familyId) {
+      console.log({
+        selectedFamilies: state.selectedFamilies
+      })
       if (!state.selectedFamilies.includes(familyId)) {
         state.selectedFamilies.push(familyId)
       }
@@ -23,59 +28,50 @@ export default {
     },
 
     assignAvailableAttributes(state, attributes) {
-      state.availableAttributes = attributes
+      state.availableAttributes = { ...attributes, ...state.availableAttributes }
     },
 
-    changeKeyEnabled(state, familyId, attributeId) {
-      state.availableAttributes.reduce((filterAvailableAttributes, attribute) => {
-        console.log(attribute)
-        if (attribute.id == attributeId && attribute.familyId == familyId) {
-          attribute.keyEnabled = !attribute.keyEnabled
-        }
-      })
+    changeKeyEnabled(state, { familyId, attributeId }) {
+      const attributes = state.availableAttributes[familyId]
+      const attribute = attributes.find(element => element.id === attributeId)
+      Vue.set(attribute, 'keyEnabled', !attribute.keyEnabled)
     },
 
-    changeRangeEnabled(state, familyId, attributeId) {
-      state.availableAttributes.reduce((filterAvailableAttributes, attribute) => {
-        if (attribute.id == attributeId && attribute.familyId == familyId) {
-          attribute.rangeEnabled = !attribute.rangeEnabled
-        }
-        console.log(attribute)
-      })
+    changeRangeEnabled(state, { familyId, attributeId }) {
+      const attributes = state.availableAttributes[familyId]
+      const attribute = attributes.find(element => element.id === attributeId)
+      Vue.set(attribute, 'rangeEnabled', !attribute.rangeEnabled)
     },
 
-    changeRequiredEnabled(state, familyId, attributeId) {
-      state.availableAttributes.reduce((filterAvailableAttributes, attribute) => {
-        if (attribute.id == attributeId && attribute.familyId == familyId) {
-          attribute.requiredEnabled = !attribute.requiredEnabled
-        }        
-        console.log(attribute)
-      })
+    changeRequiredEnabled(state, { familyId, attributeId }) {
+      const attributes = state.availableAttributes[familyId]
+      const attribute = attributes.find(element => element.id === attributeId)
+      Vue.set(attribute, 'requiredEnabled', !attribute.requiredEnabled)
     },
+    changeValuesOfRange(state, {familyId, attributeId, rangeMin, rangeMax}) {
+      const attributes = state.availableAttributes[familyId]
+      const attribute = attribute.find(element => element.id === attributeId)
+      Vue.set(attribute, 'rangeMin', rangeMin)
+      Vue.set(attribute, 'rangeMax', rangeMax)
+    }
   },
 
   actions: {  
-    changeValueOfSelectedEnabler({dispatch}, payload) {
+    changeValueOfSelectedEnabler({commit}, payload) {
       switch(payload.name) {
         case "Key": 
-          dispatch('changeKeyEnabled', payload.familyId, payload.attributeId) 
+          commit('changeKeyEnabled', payload) 
           break
         case "Range": 
-          dispatch('changeRangeEnabled', payload.familyId, payload.attributeId) 
+          commit('changeRangeEnabled', payload) 
           break
         case "Required": 
-          dispatch('changeRequiredEnabled', payload.familyId, payload.attributeId) 
+          commit('changeRequiredEnabled', payload) 
           break
       }
     },
-    changeKeyEnabled({commit}) {
-      commit('changeKeyEnabled')
-    },
-    changeRangeEnabled({commit}) {
-      commit('changeRangeEnabled')
-    },
-    changeRequiredEnabled({commit}) {
-      commit('changeRequiredEnabled')
+    changeValuesOfRange({commit}, payload) {
+      commit('changeValuesOfRange', payload)
     },
     familyCallbackListener({commit}, familyId) {
       commit('familyCallbackListener', familyId)

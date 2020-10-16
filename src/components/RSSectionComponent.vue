@@ -2,6 +2,9 @@
   <div style="border: solid white 2px; width: fit-content; padding: 10px;">
     Select your sections
     <select @change="sectionCallbackListener">
+      <option disabled selected hidden > 
+        Choose a section
+      </option>
       <option 
         v-for="section in availableSections" 
         :key='section.id' 
@@ -11,14 +14,14 @@
       </option> 
     </select> 
 
-    <selectedValues
+    <RSSelectedValues
       v-if="selectedSections.length != 0"
       name="Sections"
       :values="selectedSectionsNames"
       storeKey="selectedSections"
     />
     
-    <family 
+    <RSFamily 
       v-if="selectedSections.length != 0"
     /> 
 
@@ -26,13 +29,13 @@
 </template>
 
 <script>
-import Family from './Family'
-import SelectedValues from './SelectedValues'
+import RSFamily from './RSFamily'
+import RSSelectedValues from './RSSelectedValues'
 export default {
-  title: "section",
+  name: "RSSectionComponent",
   components: {
-    Family,
-    SelectedValues,
+    RSFamily,
+    RSSelectedValues,
   },
   computed: { 
     availableSections() {

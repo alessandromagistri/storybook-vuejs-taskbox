@@ -1,81 +1,57 @@
 <template>
-<div>
-
-</div>
-      <!-- <tr> 
-        <td>{{attributeName}}</td>
-        <td>{{familyId}}</td>
+      <tr> 
+        <td>{{attribute.name}}</td>
+        <td>{{attribute.familyId}}</td>
         <td> 
-          <statusEnabler
-            :attributeId="attributeId"
-            :familyId="familyId"
+          <RSStatusEnabler
+            :attributeId="attribute.id"
+            :familyId="attribute.familyId"
+            :enabled="attribute.keyEnabled"
             name="Key" 
           />
         </td>
         <td>
-          <statusEnabler
-            :attributeId="attributeId"
-            :familyId="familyId"
+          <RSStatusEnabler
+            :attributeId="attribute.id"
+            :familyId="attribute.familyId"
+            :enabled="attribute.requiredEnabled"
             name="Required"
           />
         </td>
         <td>
           <div style="dispay: flex; justify-content: space-between;">
-            <range 
-              :min="rangeMin"
-              :max="rangeMax"
-              :familyId="familyId"
-              :attributeId="attributeId"
+            <RSRangeComponent 
+              :rangeMin="attribute.rangeMin"
+              :rangeMax="attribute.rangeMax"
+              :enabled="attribute.rangeEnabled"
+              :familyId="attribute.familyId"
+              :attributeId="attribute.id"
             />
           </div>
         </td>
-      </tr> -->
+      </tr>
 </template>
 
 
 
 <script>
-// import Range from './Range'
-// import StatusEnabler from './StatusEnabler'
+import RSRangeComponent from './RSRangeComponent'
+import RSStatusEnabler from './RSStatusEnabler'
 export default {
 
   name: "RSAttribute",
 
-  // components: {
-  //   Range,
-  //   StatusEnabler,
-  // },
+  components: {
+    RSRangeComponent,
+    RSStatusEnabler,
+  },
 
   props: {
-    attributeName: {
-      type: String,
+    attribute: {
+      type: Object,
       required: true,
-      default: 'Attribute',
-    },
-
-    familyId: {
-      type: String,
-      required: true,
-      default: 'familyID',
-    },
-
-    attributeId: {
-      type: String,
-      required: true,
-      default: 'Id',
-    },
-
-    rangeMin: {
-      type: Number,
-      required: true,
-      default: 1,
-    },
-
-    rangeMax: {
-      type: Number,
-      required: true,
-      default: 10,
-    },
+      default: {},
+    }
   }
 }
 

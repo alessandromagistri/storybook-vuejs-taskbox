@@ -1,8 +1,9 @@
-import Family from './Family'
+import RSFamily from './RSFamily'
 import { withKnobs, } from '@storybook/addon-knobs';
+import store from '../store/store'
 
 export default {
-  title: 'Family',
+  title: 'RSFamily',
   decorators: [withKnobs],
   excludeStories: /.*Data$/,
 }
@@ -39,10 +40,11 @@ export const families = [
   },
 ]
 
-const familyTemplate = `<family  />`
+const familyTemplate = `<RSFamily  />`
 
 export const Default = () => ({
-  components: { Family }, 
+  components: { RSFamily }, 
+  store,
   template: familyTemplate,
   data: () => {
     return {
