@@ -31,6 +31,15 @@
 <script>
 import RSFamily from './RSFamily'
 import RSSelectedValues from './RSSelectedValues'
+/** 
+ * RS Section Component shows all the available selectable sections
+ * The user can select one or more sections
+ * @component
+ * @example
+ * return (
+ * <RSSectionComponent />
+ * )
+*/
 export default {
   name: "RSSectionComponent",
   components: {
@@ -38,6 +47,10 @@ export default {
     RSSelectedValues,
   },
   computed: { 
+    /**         
+     * List of the available sections in the selected supersections
+     * @return{array} The list of available sections         
+     */
     availableSections() {
       const sections = this.$store.state.products.reduce((result, superSection) => {
         if (superSection.id == this.$store.state.superSections.currentSelectedSuperSection) {
@@ -50,9 +63,17 @@ export default {
 
       return sections
     },
+    /**         
+     * Gives the selected sections array inside sections' store
+     * @return{array} The list of available families         
+     */
     selectedSections() {
       return this.$store.state.sections.selectedSections
     },
+    /**         
+     * Mapping of the sections' id with their names
+     * @return{array} The list of the sections' names   
+     */
     selectedSectionsNames(){
       const sectionsNames = this.$store.state.sections.availableSections.reduce((result, section) => {
         this.$store.state.sections.selectedSections.reduce((filteredSelectedSections, selectedSection) => {
@@ -70,6 +91,10 @@ export default {
   },
   
   methods: {
+    /**         
+     * Pushes in the selected sections array the selected section
+     * @return{null}
+     */
     sectionCallbackListener(evt) {
       this.$store.dispatch('sectionCallbackListener', evt.target.value)
     },

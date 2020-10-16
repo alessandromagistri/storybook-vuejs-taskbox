@@ -44,13 +44,19 @@
 </template>
 
 <script>
-import RSStatusEnabler from './RSStatusEnabler'
+/** 
+ * RS Result Wrapper shows all the available products from the selected families.
+ * It also allows to modify the searching params in order to display different products.
+ * @component
+ * @example
+ * return (
+ * <RSResultWrapper />
+ * )
+*/
 export default {
 
   name: 'RSResultWrapper',
-  compoents: {
-    RSStatusEnabler
-  },
+  compoents: {},
   props: {
 
     products: {

@@ -20,6 +20,14 @@
 
 <script>
 import RSAttribute from './RSAttribute'
+/** 
+ * RS Attributes shows all the available attributes from the selected families.
+ * @component
+ * @example
+ * return (
+ * <RSAttributes />
+ * )
+*/
 export default {
   name:'RSAttributes',
   components: {

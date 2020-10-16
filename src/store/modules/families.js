@@ -1,5 +1,9 @@
 import Vue from 'vue'
 
+/** 
+ * Families is the store which contains all the methods and states for families functions
+ * @module  
+*/
 export default {
   state: () =>({
     selectedFamilies: [],

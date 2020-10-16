@@ -37,6 +37,14 @@
 <script>
 import RSRangeComponent from './RSRangeComponent'
 import RSStatusEnabler from './RSStatusEnabler'
+/** 
+ * RS Attribute shows one of the available attributes
+ * @component
+ * @example
+ * return (
+ * <RSAttribute />
+ * )
+*/
 export default {
 
   name: "RSAttribute",

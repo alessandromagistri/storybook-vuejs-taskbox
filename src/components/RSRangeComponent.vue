@@ -31,7 +31,14 @@
 
 <script>
 import RSStatusEnabler from './RSStatusEnabler'
-
+/** 
+ * RS Range Component allows the user to disable or enable the range and its values of a specific attribute
+ * @component
+ * @example
+ * return (
+ * <RSRangeComponent />
+ * )
+*/
 export default {
   name: 'RSRangeComponent',
   components: {
@@ -65,6 +72,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * It allows to the user to activate or disactivate the range, and to update its minimum and max range 
+     * @return{null}   
+     */
     handleRangeValues() {
       if (!this.rangeMin > this.rangeMax) {
         this.$store.dispatch('changeValuesOfRange', {familyId: this.familyId, attributeId: this.attributeId, rangeMin: this.rangeMin, rangeMax: this.rangeMax}) 

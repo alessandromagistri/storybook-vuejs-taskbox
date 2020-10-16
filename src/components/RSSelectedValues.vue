@@ -22,6 +22,15 @@
 </template>
 
 <script>
+/** 
+ * RS Selected Values shows all the selected values, that may be families or sections.
+ * It also allows to delete those selected values
+ * @component
+ * @example
+ * return (
+ * <RSSelectedValues />
+ * )
+*/
 export default {
   name: "RSSelectedValues",
   props: {
@@ -41,16 +50,20 @@ export default {
     }
   },
 
-  computed: {
-    selectedKeys() {
-      return Object.keys(this.values)
-    },
-    selectedStoreEntries() {
-      return this.$store.state[this.storeKey]
-    },
-  },
+  // computed: {
+  //   selectedKeys() {
+  //     return Object.keys(this.values)
+  //   },
+  //   selectedStoreEntries() {
+  //     return this.$store.state[this.storeKey]
+  //   },
+  // },
 
   methods: {
+    /**         
+     * Deletes from the given storeKey's store (which can be the "family" or "section") the selected value.
+     * @return{null}
+     */
     deleteElement(value)  {
       this.$store.dispatch('deleteSelectedValue', {key:this.storeKey, value})
     },

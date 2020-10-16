@@ -10,6 +10,14 @@
 </template>
 
 <script>
+/** 
+ * RS Status Enabler allows to check or uncheck the values of one attribute in order to let those values to be or not to be searched.
+ * @component
+ * @example
+ * return (
+ * <RSStatusEnabler />
+ * )
+*/
 export default {
   name: 'RSStatusEnabler',
   props: {
@@ -34,6 +42,10 @@ export default {
   },
 
   methods: {
+    /**         
+     * Updates the value of the selected enabler (key, required or range) of the attribute.
+     * @return{null}
+     */
     handleAttributes(evt) {
       this.$store.dispatch('changeValueOfSelectedEnabler', {
         name: evt.target.value,

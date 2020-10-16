@@ -40,6 +40,15 @@
 import RSAttributes from './RSAttributes'
 import RSSelectedValues from './RSSelectedValues'
 
+/** 
+ * RS Family Component shows all the available selectable families.
+ * When the user selects one or more families, then there will be displayed its attributes
+ * @component
+ * @example
+ * return (
+ * <RSFamily />
+ * )
+*/
 export default {
   name: "RSFamily",
   components: {
@@ -47,6 +56,10 @@ export default {
     RSSelectedValues,
   },
   computed: {
+    /**         
+     * List of the available families in the selected sections
+     * @return{array} The list of available families         
+     */
     availableFamilies() {
       const families = this.$store.state.sections.availableSections.reduce((result, section) => {
         const sectionFamilies = this.selectedSections.reduce((filteredFamilies, selectedSection) => {
@@ -59,11 +72,15 @@ export default {
 
         this.$store.dispatch('assignAvailableFamilies', [...result, ...sectionFamilies])
         return [...result, ...sectionFamilies]
-      }, [] )
+      }, [])
 
       return families
     },
 
+    /**         
+     * List of the available families' attributes
+     * @return{array} The list of available attributes         
+     */
     availableAttributes() {
       const attributes = this.$store.state.families.availableFamilies.reduce((result, family) => {
         this.$store.state.families.selectedFamilies.reduce((filteredSelectedFamilies, selectedFamily) => {
@@ -79,6 +96,10 @@ export default {
       return attributes
     },
 
+    /**         
+     * Mapping of the families' id with their names
+     * @return{array} The list of the families'names   
+     */
     selectedFamiliesNames(){
       const familiesNames = this.$store.state.families.availableFamilies.reduce((result, family) => {
         this.$store.state.families.selectedFamilies.reduce((filteredSelectedFamilies, selectedFamily) => {
@@ -93,15 +114,27 @@ export default {
       return familiesNames
     },
     
+    /**         
+     * Gives the selected families array inside families' store
+     * @return{array} The list of selected families         
+     */
     selectedFamilies() {
       return this.$store.state.families.selectedFamilies
     },
+    /**         
+     * Gives the selected sections array in order to have the available families
+     * @return{array} The list of selected sections         
+     */
     selectedSections() {
       return this.$store.state.sections.selectedSections
     },
   },
 
   methods: {
+    /**         
+     * Pushes in the selected families array the selected family
+     * @return{null}  
+     */
     familyCallbackListener(evt) {
       this.$store.dispatch('familyCallbackListener', evt.target.value)
     }
