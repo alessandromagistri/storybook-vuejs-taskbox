@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> RSResultWrapper</title>
+  <title> store/modules/sections.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,251 +79,80 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Components</p>
-                    <h1>RSResultWrapper</h1>
+                    <p>Source</p>
+                    <h1>store/modules/sections.js</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-            &ltRSResultWrapper <i>products</i> <i>searchParams</i> /&gt
-        </h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class='vertical-section'>
-                <div class="members">
-                    <div class="member">
-                        <div class=name>
-                            <span class="tag">Constructor</span>
-                        </div>
-                        
-
-
-    
-    <h4 class="name" id="RSResultWrapper">
-        <a class="href-link" href="#RSResultWrapper">#</a>
-        
-        <span class="code-name">
-            
-                &ltRSResultWrapper <i>products</i> <i>searchParams</i> /&gt
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        RS Result Wrapper shows all the available products from the selected families.It also allows to modify the searching params in order to display different products.
-    </div>
-    
-
-
-
-
-
-
-
-    
-        <h5>PropTypes:</h5>
-        
-<div class="table-container">
-  <table class="params table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Description</th>
-        <th class="last">Default</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-          <tr class="deep-level-0">
-            <td class="name"><code>products</code></td>
-            <td>
-              object
-            </td>
-            <td>Yes</td>
-            <td></td>
-            <td>{}</td>
-          </tr>
-          
-    
-          <tr class="deep-level-0">
-            <td class="name"><code>searchParams</code></td>
-            <td>
-              array
-            </td>
-            <td>Yes</td>
-            <td></td>
-            <td>{}</td>
-          </tr>
-          
-    
-    </tbody>
-  </table>
-</div>
-    
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_RSResultWrapper.vue.html" class="button">View Source</a>
-            <span>
-                <a href="components_RSResultWrapper.vue.html">components/RSResultWrapper.vue</a>, <a href="components_RSResultWrapper.vue.html#line11">line 11</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    
-        
-<div style="margin-bottom: 30px;">
-  <div id='Asi6e1zrfmq7kggon9na'></div>
-  <template id="TAsi6e1zrfmq7kggon9na">
-    <head>
-        <script src="./build/entry.js"></script>
-        <link rel="stylesheet" href="./build/entry.css">
-    </head>
-    <body>
-      <div id="AAsi6e1zrfmq7kggon9na"></div>
-      <script>
-        new Vue({
-          components: vueComponents,
-          render: (d, context) => {
-            return d(VueWrapper, {
-              props: {defaultCode: "return (\r<RSResultWrapper />\r)"}
-            })
-          },
-        }).$mount('#AAsi6e1zrfmq7kggon9na');
-      </script>
-    </body>
-  </template>
-
-  <iframe frameborder="0" id="FAsi6e1zrfmq7kggon9na" style="width: 100%;"></iframe>
-
-  <script>
-    void function() {
-      const iframe = document.getElementById('FAsi6e1zrfmq7kggon9na');
-      const doc = iframe.contentWindow || ( iframe.contentDocument.document || iframe.contentDocument);
-
-      doc.document.open();
-      doc.document.write($("#TAsi6e1zrfmq7kggon9na").html());
-      doc.document.close();
-      iframe.contentWindow.updateHeight = function(height) {
-        $(iframe).height(height + 20)
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/** 
+ * Sections is the store which contains all the mutations and states for sections functions.
+ * @module  
+*/
+export default {
+  /**
+  * The Section state
+  * @name State
+  * @type {object} 
+  * @property {array} selectedSections The selected sections.
+  * @property {array} availableSections The available sections.
+  */
+  state: () =>({
+    selectedSections: [],
+    availableSections: [],
+  }),
+  /**
+   * The Section mutations
+   * @name Mutations
+   * @mutator {null} initializeSelectedSections=selectedSections Initializes the selected sections array to an empty array, this happens whenever a new super sections is selected
+   * @mutator {string} sectionCallbackListener=selectedSections Pushes in the selected sections array the selected section only if it is not included yet.
+   * @mutator {array} assignAvailableSections=availableSections Assigns to the available sections array the available sections obtained by the selected supersection. 
+   * @mutator {string} deleteSelectedSection=selectedSections Removes from the selected sections array the section selected by the user.
+   * @type {object} 
+   */
+  mutations: {
+    initializeSelectedSections(state) {
+      state.selectedSections = []
+    },
+    sectionCallbackListener(state, sectionId) {
+      if (!state.selectedSections.includes(sectionId)) {
+        state.selectedSections.push(sectionId)
       }
-    }()
-  </script>
-</div>
-    
+      console.log("SELECTED SECTIONS: ", state.selectedSections)
+    },
+    assignAvailableSections(state, sections) {
+      state.availableSections = sections
+    },
+    deleteSelectedSection(state, sectionId) {
+      if (state.selectedSections.includes(sectionId)) {
+        state.selectedSections = state.selectedSections.filter(removeSectionId => removeSectionId!==sectionId)
+      }
+    },
+  },
 
-
-
-                    </div>
-                </div>
-            </div>
-        
-    
-    </div>
-    
-        
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+  actions: {
+    initializeSelectedSections( {commit} ) {
+      commit('initializeSelectedSections')
+    },
+    sectionCallbackListener( {commit}, sectionId) {
+      commit('sectionCallbackListener', sectionId)
+    },
+    assignAvailableSections( {commit}, sections) {
+      commit('assignAvailableSections', sections)
+    },
+    deleteSelectedSection( {commit}, value) {
+      commit('deleteSelectedSection', value)
+      commit('deleteSelectedFamiliesByFamilyId', value, {root:true})
+    },
+  }
+}</code></pre>
+        </article>
+    </section>
 
 
 

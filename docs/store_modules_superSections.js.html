@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> RSResultWrapper</title>
+  <title> store/modules/superSections.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,251 +79,55 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Components</p>
-                    <h1>RSResultWrapper</h1>
+                    <p>Source</p>
+                    <h1>store/modules/superSections.js</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-            &ltRSResultWrapper <i>products</i> <i>searchParams</i> /&gt
-        </h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class='vertical-section'>
-                <div class="members">
-                    <div class="member">
-                        <div class=name>
-                            <span class="tag">Constructor</span>
-                        </div>
-                        
-
-
-    
-    <h4 class="name" id="RSResultWrapper">
-        <a class="href-link" href="#RSResultWrapper">#</a>
-        
-        <span class="code-name">
-            
-                &ltRSResultWrapper <i>products</i> <i>searchParams</i> /&gt
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        RS Result Wrapper shows all the available products from the selected families.It also allows to modify the searching params in order to display different products.
-    </div>
-    
-
-
-
-
-
-
-
-    
-        <h5>PropTypes:</h5>
-        
-<div class="table-container">
-  <table class="params table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Description</th>
-        <th class="last">Default</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-          <tr class="deep-level-0">
-            <td class="name"><code>products</code></td>
-            <td>
-              object
-            </td>
-            <td>Yes</td>
-            <td></td>
-            <td>{}</td>
-          </tr>
-          
-    
-          <tr class="deep-level-0">
-            <td class="name"><code>searchParams</code></td>
-            <td>
-              array
-            </td>
-            <td>Yes</td>
-            <td></td>
-            <td>{}</td>
-          </tr>
-          
-    
-    </tbody>
-  </table>
-</div>
-    
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_RSResultWrapper.vue.html" class="button">View Source</a>
-            <span>
-                <a href="components_RSResultWrapper.vue.html">components/RSResultWrapper.vue</a>, <a href="components_RSResultWrapper.vue.html#line11">line 11</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    
-        
-<div style="margin-bottom: 30px;">
-  <div id='Asi6e1zrfmq7kggon9na'></div>
-  <template id="TAsi6e1zrfmq7kggon9na">
-    <head>
-        <script src="./build/entry.js"></script>
-        <link rel="stylesheet" href="./build/entry.css">
-    </head>
-    <body>
-      <div id="AAsi6e1zrfmq7kggon9na"></div>
-      <script>
-        new Vue({
-          components: vueComponents,
-          render: (d, context) => {
-            return d(VueWrapper, {
-              props: {defaultCode: "return (\r<RSResultWrapper />\r)"}
-            })
-          },
-        }).$mount('#AAsi6e1zrfmq7kggon9na');
-      </script>
-    </body>
-  </template>
-
-  <iframe frameborder="0" id="FAsi6e1zrfmq7kggon9na" style="width: 100%;"></iframe>
-
-  <script>
-    void function() {
-      const iframe = document.getElementById('FAsi6e1zrfmq7kggon9na');
-      const doc = iframe.contentWindow || ( iframe.contentDocument.document || iframe.contentDocument);
-
-      doc.document.open();
-      doc.document.write($("#TAsi6e1zrfmq7kggon9na").html());
-      doc.document.close();
-      iframe.contentWindow.updateHeight = function(height) {
-        $(iframe).height(height + 20)
-      }
-    }()
-  </script>
-</div>
-    
-
-
-
-                    </div>
-                </div>
-            </div>
-        
-    
-    </div>
-    
-        
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/** 
+ * Supersections is the store which contains all the mutations and states for supersections' functions.
+ * @module  
+*/
+export default {
+  /**
+  * The Supersection state
+  * @name State
+  * @type {object} 
+  * @property {string} currentSelectedSuperSection The selected super section. 
+  */
+  state: () =>({
+    currentSelectedSuperSection: null,
+  }),
+  /**
+   * The Super section mutations
+   * @name Mutations
+   * @mutator {string} callbackListener=currentSelectedSuperSection It assigns to the current selected super section state's parameter the value selected from the user
+   * @type {object} 
+   */
+  mutations: {
+    /**         
+     * 
+     * @return{null}  
+     */
+    callbackListener(state, evt) {
+      state.currentSelectedSuperSection = evt.target.value
+    },
+  },
+  
+  actions: {
+    callbackListener({commit}, evt) {
+      commit('callbackListener', evt)
+    }
+  }
+}</code></pre>
+        </article>
+    </section>
 
 
 

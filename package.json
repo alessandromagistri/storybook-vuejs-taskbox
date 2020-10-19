@@ -46,6 +46,7 @@
     "jest-vue-preprocessor": "^1.7.1",
     "jsdoc": "^3.6.6",
     "jsdoc-vue": "^1.0.0",
+    "jsdoc-vuex-plugin": "^1.0.0",
     "prettier": "^1.19.1",
     "react-is": "^16.13.1",
     "vue-template-compiler": "^2.6.11"

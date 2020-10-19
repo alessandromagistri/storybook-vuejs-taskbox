@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-store_modules_families.html">store/modules/families</a></li></ul><h3>Components</h3><ul><li><a href="RSAttribute.html">RSAttribute</a></li><li><a href="RSAttributes.html">RSAttributes</a></li><li><a href="RSFamily.html">RSFamily</a></li><li><a href="RSRangeComponent.html">RSRangeComponent</a></li><li><a href="RSResultWrapper.html">RSResultWrapper</a></li><li><a href="RSSectionComponent.html">RSSectionComponent</a></li><li><a href="RSSelectedValues.html">RSSelectedValues</a></li><li><a href="RSStatusEnabler.html">RSStatusEnabler</a></li><li><a href="RSSuperSection.html">RSSuperSection</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-store_modules_families.html">store/modules/families</a></li><li><a href="module-store_modules_sections.html">store/modules/sections</a></li><li><a href="module-store_modules_superSections.html">store/modules/superSections</a></li></ul><h3>Components</h3><ul><li><a href="RSAttribute.html">RSAttribute</a></li><li><a href="RSAttributes.html">RSAttributes</a></li><li><a href="RSFamily.html">RSFamily</a></li><li><a href="RSRangeComponent.html">RSRangeComponent</a></li><li><a href="RSResultWrapper.html">RSResultWrapper</a></li><li><a href="RSSectionComponent.html">RSSectionComponent</a></li><li><a href="RSSelectedValues.html">RSSelectedValues</a></li><li><a href="RSStatusEnabler.html">RSStatusEnabler</a></li><li><a href="RSSuperSection.html">RSSuperSection</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Mutations">Mutations</a></li><li><a href="global.html#State">State</a></li></ul></div>
                 
             </nav>
         </div>
@@ -92,17 +92,38 @@
             <pre class="prettyprint source linenums"><code>import Vue from 'vue'
 
 /** 
- * Families is the store which contains all the methods and states for families functions
+ * Families is the store which contains all the mutations and states for families functions.
  * @module  
 */
 export default {
+  /**
+  * The Family state
+  * @name State
+  * @type {object} 
+  * @property {array} selectedFamilies The selected families.
+  * @property {array} availableFamilies The available families.
+  * @property {array} availableAttributes The available attributes.
+  */
   state: () =>({
     selectedFamilies: [],
     availableFamilies: [],
     availableAttributes: [], //Mostra SOLO attributi delle famiglie selezionate.
   }),
-
+  /**
+   * The Family mutations
+   * @name Mutations
+   * @mutator {string} familyCallbackListener=selectedFamilies Pushes in the selected families array the selected family only if it is not included yet.
+   * @mutator {string} deleteSelectedFamily=selectedFamilies Removes from the selected families array the family selected by the user.
+   * @mutator {array} assignAvailableFamilies=availableFamilies Assigns to the available families array the available families obtained by the selected sections.
+   * @mutator {array} assignAvailableAttributes=availableAttributes Assigns to the available attribues array the available attributes obtained by the selected families.
+   * @mutator {object} changeKeyEnabled=availableAttributes Changes the value (true or false) of the "key" parameter inside the attribute.
+   * @mutator {object} changeRangeEnabled=availableAttributes Changes the value (true or false) of the "range" parameter inside the attribute.
+   * @mutator {object} changeRequiredEnabled=availableAttributes Changes the value (true or false) of the "required" parameter inside the attribute.
+   * @mutator {object} changeValuesOfRange=availableAttributes Changes the values of min and max of the range of the attribute.
+   * @type {object} 
+   */
   mutations: {
+
     familyCallbackListener(state, familyId) {
       console.log({
         selectedFamilies: state.selectedFamilies
@@ -111,33 +132,27 @@ export default {
         state.selectedFamilies.push(familyId)
       }
     },
-
     deleteSelectedFamily(state, familyId) {
       if (state.selectedFamilies.includes(familyId)) {
         state.selectedFamilies = state.selectedFamilies.filter(removeFamilyId => removeFamilyId!==familyId)
       }
     },
-
-    assignAvailableFamilies(state, families) {
-      state.availableFamilies = families
+    assignAvailableFamilies(state, availableFamilies) {
+      state.availableFamilies = availableFamilies
     },
-
     assignAvailableAttributes(state, attributes) {
       state.availableAttributes = { ...attributes, ...state.availableAttributes }
     },
-
     changeKeyEnabled(state, { familyId, attributeId }) {
       const attributes = state.availableAttributes[familyId]
       const attribute = attributes.find(element => element.id === attributeId)
       Vue.set(attribute, 'keyEnabled', !attribute.keyEnabled)
     },
-
     changeRangeEnabled(state, { familyId, attributeId }) {
       const attributes = state.availableAttributes[familyId]
       const attribute = attributes.find(element => element.id === attributeId)
       Vue.set(attribute, 'rangeEnabled', !attribute.rangeEnabled)
     },
-
     changeRequiredEnabled(state, { familyId, attributeId }) {
       const attributes = state.availableAttributes[familyId]
       const attribute = attributes.find(element => element.id === attributeId)
@@ -150,7 +165,6 @@ export default {
       Vue.set(attribute, 'rangeMax', rangeMax)
     }
   },
-
   actions: {  
     changeValueOfSelectedEnabler({commit}, payload) {
       switch(payload.name) {
@@ -182,10 +196,7 @@ export default {
     }
   }
 }
-
-/*
-  attivare/disattivare prop degli attributi per poi arrivare al filtro finale
-*/</code></pre>
+</code></pre>
         </article>
     </section>
 
